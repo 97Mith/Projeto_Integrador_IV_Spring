@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">       
+
+        <link rel="stylesheet" href="C:/Users/Matheus/Documents/Faculdade/pi4-springboot/pi4-2/pi4-2/src/main/resources/static/css/styles.css">
+        <script src="C:/Users/Matheus/Documents/Faculdade/pi4-springboot/pi4-2/pi4-2/src/main/resources/static/js/validations.js"></script>
+
+
+        <title>Cadastro</title>
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                height: 100vh;
+                background-color: #1c3e5a;
+            }
+
+            .form-container {
+                background-color: #fff;
+                padding: 20px;
+                border-radius: 8px;
+                width: 500px;
+                max-width: 90%;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                margin: auto;
+                margin-bottom: 20px;
+                margin-top: 1000px;
+            }
+
+            input[type="text"],
+            input[type="email"],
+            input[type="password"],
+            input[type="tel"],
+            select {
+                width: 100%;
+                padding: 10px;
+                margin: 10px 0;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+            }
+
+            input[type="submit"] {
+                width: 100%;
+                padding: 10px;
+                background-color: #2980b9;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+
+            input[type="submit"]:hover {
+                background-color: #21618c;
+            }
+
+            button {
+                width: 100%;
+                padding: 10px;
+                background-color: #2980b9;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 16px;
+            }
+
+            button:hover {
+                background-color: #21618c;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Navbar -->
+        <div class="w3-top">
+            <div class="w3-bar custom-navbar w3-card w3-left-align w3-large">  
+                <div style="align-items: center; margin-right: 15px; margin-left: 5px;">
+                    <img src="assets/logo.png" alt="Home" class = "w3-left" style="width:48px; height:48px; margin-right:8px;"> 
+                    <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+                    <a href="index.html" class="w3-bar-item w3-button w3-padding-large w3-white">Home</a>
+                    <a href="listaEsportes.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Aulas Oferecidas</a>
+                    <a href="vizita.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Venha nos Visitar</a>
+                    <a href="sobreNós.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Sobre Nós</a>
+                    <a href="comentario.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Avaliações</a>
+                    <a href="servicos.html" class="w3-bar-item w3-button w3-padding-large w3-white">Serviços</a>
+                    <a href="sobreEsportes.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Sobre Esportes</a>
+                    <a href="login.html" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white">Login<img src="assets/LoginIcon.png" alt="Login" style="width:27px; height:27px; vertical-align:middle; margin-left:8px;"/></a>
+                </div>
+            </div>
+
+            <!-- Navbar para telas pequenas -->
+            <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+                <a href="index.html" class="w3-bar-item w3-button w3-padding-large">Home</a>
+                <a href="listaEsportes.html" class="w3-bar-item w3-button w3-padding-large">Aulas Oferecidas</a>
+                <a href="vizita.html" class="w3-bar-item w3-button w3-padding-large">Venha nos Visitar</a>
+                <a href="sobreNós.html" class="w3-bar-item w3-button w3-padding-large">Sobre Nós</a>
+                <a href="comentario.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Avaliações</a>
+                <a href="servicos.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Serviços</a>
+                <a href="sobreEsportes.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Sobre Esportes</a>
+                <a href="login.html" class="w3-bar-item w3-button w3-padding-large">Login</a>
+            </div>
+        </div>
+
+        <div class="form-container">
+            <h2>Cadastro</h2>
+            <form id="formulario" method="post" action="cadastro.js">
+                <label for="tipo">Cadastrar como:</label>
+                <select id="tipo" name="tipo">
+                    <option value="aluno">Aluno</option>
+                    <option value="professor">Professor</option>
+                    <option value="gestor">Gestor</option>
+                </select>
+
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome" placeholder="Nome" required>
+
+                <label for="cpf">CPF:</label>
+                <input type="text" id="cpf" name="cpf" placeholder="CPF" required>
+
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email" placeholder="E-mail" required>
+
+                <label for="telefone">Telefone:</label>
+                <input type="tel" id="telefone" name="telefone" placeholder="Telefone" required>
+
+                <label for="senha">Senha:</label>
+                <input type="password" id="senha" name="senha" placeholder="Senha" required>
+
+                <label for="nomeResponsavel">Nome do Responsável:</label>
+                <input type="text" id="nomeResponsavel" name="nomeResponsavel" placeholder="Nome do Responsável" required>
+
+                <label for="cpfResponsavel">CPF do Responsável:</label>
+                <input type="text" id="cpfResponsavel" name="cpfResponsavel" placeholder="CPF do Responsável" required>
+
+                <label for="emailResponsavel">E-mail do Responsável:</label>
+                <input type="email" id="emailResponsavel" name="emailResponsavel" placeholder="E-mail do Responsável" required>
+
+                <label for="telefoneResponsavel">Telefone do Responsável:</label>
+                <input type="tel" id="telefoneResponsavel" name="telefoneResponsavel" placeholder="Telefone do Responsável" required>
+
+                <label for="statusAtivo">Ativo:</label>
+                <input type="checkbox" id="statusAtivo" name="statusAtivo">
+                <p />
+
+                <input type="submit" value="Cadastrar">
+            </form>
+        </div>
+
+        <!-- Footer -->
+        <footer class="w3-container w3-padding-64 w3-opacity" style="text-align: left;">
+            <div style="display: flex; align-items: center; margin-bottom: 16px;">
+                <img src="assets/telefone.png" alt="telefone" style="width:25px; height:25px; margin-right: 8px;"/>
+                <span><b>Telefone: </b>+55 (41) 99123-4567</span>
+            </div>
+
+            <div style="display: flex; align-items: center; margin-bottom: 16px;">
+                <img src="assets/email.png" alt="email" style="width:25px; height:25px; margin-right: 8px;"/>
+                <span><b>Email: </b>badsport@outlook.com</span>
+            </div>
+
+            <div style="display: flex; align-items: center; margin-bottom: 16px;">
+                <img src="assets/endereço.png" alt="endereço" style="width:25px; height:25px; margin-right: 8px;"/>
+                <span><b>Endereço: </b>Av. das Araucária, 3803</span>
+            </div>
+
+            <div class="w3-xlarge w3-padding-32">
+                <i class="fa fa-facebook-official w3-hover-opacity"></i>
+                <i class="fa fa-instagram w3-hover-opacity"></i>
+                <i class="fa fa-snapchat w3-hover-opacity"></i>
+                <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+                <i class="fa fa-twitter w3-hover-opacity"></i>
+                <i class="fa fa-linkedin w3-hover-opacity"></i>            
+            </div>
+            <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+        </footer>
+
+        <script src="assets/js/jquery-3.7.1.min.js"></script>
+        <script>
+            function myFunction() {
+                var x = document.getElementById("navDemo");
+                if (x.className.indexOf("w3-show") == -1) {
+                    x.className += " w3-show";
+                } else {
+                    x.className = x.className.replace(" w3-show", "");
+                }
+            }
+
+            $(document).ready(function() {
+                $("#myForm").submit(function(event) {
+                    event.preventDefault();
+
+                    var formData = $(this).serializeArray();
+                    var jsonData = {};
+
+                    $.each(formData, function(i, field) {
+                        jsonData[field.name] = field.value;
+                    });
+
+                    $.ajax({
+                        type: "POST",
+                        url: "http://localhost:8080/gestor/salvar",
+                        contentType: "application/json",
+                        data: JSON.stringify(jsonData),
+                        success: function(response) {
+                            console.log("Dados enviados com sucesso:", response);
+                        },
+                        error: function(xhr, status, error) {
+                            console.error("Erro ao enviar os dados:", error);
+                        }
+                    });
+                });
+            });
+
+        </script>
+        <script src="C:/Users/Matheus/Documents/Faculdade/pi4-springboot/pi4-2/pi4-2/src/main/resources/static/js/validations.js"></script>
+        <script src="C:/Users/Matheus/Documents/Faculdade/pi4-springboot/pi4-2/pi4-2/src/main/resources/static/js/cadastro.js"></script>
+        <script>
+            function myFunction() {
+                var x = document.getElementById("navDemo");
+                x.classList.toggle("w3-show");
+            }
+        </script>
+    </body>
+</html>
