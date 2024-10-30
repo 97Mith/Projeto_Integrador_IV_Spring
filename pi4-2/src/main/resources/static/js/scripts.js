@@ -42,14 +42,14 @@ async function registrarPessoa(event) {
         cargo: document.getElementById("cargo").value,
         estaAtivo: document.getElementById("estaAtivo").checked
     };
-    
+
     try {
         const response = await fetch(API_BASE_URL, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(novaPessoa)
         });
-        
+
         if (response.ok) {
             window.location.href = "/"; // Redireciona para a página principal após o registro
         }
@@ -140,4 +140,22 @@ const pessoaId = urlParams.get("id");
 
 if (pessoaId && document.getElementById("editar-form")) {
     carregarPessoa(pessoaId);
+}
+
+//mascaras
+function mascararCPF(campo) {
+    let valor = campo.value.replace(/\D/g, "");
+    valor = valor.replace(/(\d{3})(\d)/, "$1.$2");
+    valor = valor.replace(/(\d{3})(\d)/, "$1.$2");
+    valor = valor.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+
+    campo.value = valor;
+}
+
+function mascararTelefone(campo) {
+    let valor = campo.value.replace(/\D/g, "");
+    valor = valor.replace(/(\d{2})(\d)/, "($1) $2");
+    valor = valor.replace(/(\d{5})(\d)/, "$1-$2");
+
+    campo.value = valor;
 }
