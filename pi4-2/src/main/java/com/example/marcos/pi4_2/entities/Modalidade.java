@@ -18,12 +18,16 @@ public class Modalidade {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Setter(AccessLevel.NONE)
     private Integer id;
+
     @Column(name = "nome")
     private String nome;
+
     @Column(name = "descricao")
     private String descricao;
+
     @Column(name = "categoria")
     private String categoria;
+
     @OneToMany
     @JoinColumn
     private List<Turma> turmas;
