@@ -24,4 +24,10 @@ public class FaturaAluno {
     private double valor;
     @ManyToOne
     private ResponsavelAluno responsavelAluno;
+
+    public FaturaAluno(Date vencimento, double valor, ResponsavelAluno responsavelAluno) {
+        this.vencimento = vencimento;
+        this.valor = valor;
+        this.responsavelAluno = responsavelAluno;
+    }
 }

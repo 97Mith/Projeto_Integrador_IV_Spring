@@ -32,4 +32,12 @@ public class Turma {
     @OneToMany
     @JoinColumn(name = "aulas_ids")
     private List<Aula> aulas;
+
+    public Turma(Modalidade modalidade, Date horarioTreino, Professor professor, List<FichaAluno> alunos, List<Aula> aulas) {
+        this.modalidade = modalidade;
+        this.horarioTreino = horarioTreino;
+        this.professor = professor;
+        this.alunos = alunos;
+        this.aulas = aulas;
+    }
 }

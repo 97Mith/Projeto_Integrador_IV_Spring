@@ -19,7 +19,7 @@ public class GestorServiceImplement implements GestorService{
     private final GestorMapper gestorMapper;
     @Override
     public GestorResponseDTO findById(Integer id) {
-        return gestorMapper.toGestorDTO(retornarGestor(id));
+        return gestorMapper.toGestorDTO(returnGestor(id));
     }
 
     @Override
@@ -38,7 +38,7 @@ public class GestorServiceImplement implements GestorService{
     @Override
     public GestorResponseDTO update(GestorRequestDTO gestorDTO, Integer id) {
 
-        Gestor gestor = retornarGestor(id);
+        Gestor gestor = returnGestor(id);
 
         gestorMapper.updateGestorData(gestor, gestorDTO);
 
@@ -53,8 +53,8 @@ public class GestorServiceImplement implements GestorService{
         return "Gestor exluído com sucesso!";
     }
 
-    private Gestor retornarGestor(Integer id){
+    private Gestor returnGestor(Integer id){
         return gestorRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Não encontrado no anco de dados"));
+                .orElseThrow(() -> new RuntimeException("Não encontrado no banco de dados"));
     }
 }

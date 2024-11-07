@@ -23,4 +23,11 @@ public class ResponsavelAluno extends Pessoa {
     @OneToMany
     @JoinColumn(name = "responsavel_aluno_id")
     private List<Aluno> responsavelPor;
+
+    public ResponsavelAluno(String nome, String cpf, String tel, String email, String senha, String cargo, boolean estaAtivo,
+                            List<FaturaAluno> faturas, List<Aluno> responsavelPor) {
+        super(nome, cpf, tel, email, senha, cargo, estaAtivo);  // Chama o construtor de Pessoa
+        this.faturas = faturas;
+        this.responsavelPor = responsavelPor;
+    }
 }

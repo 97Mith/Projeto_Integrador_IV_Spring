@@ -28,4 +28,11 @@ public class ComentarioAula {
 
     @Column(name = "estrelas")
     private int avaliacao;
+
+    public ComentarioAula(Aluno aluno, String comentario, Aula aula, int avaliacao) {
+        this.aluno = aluno;
+        this.comentario = comentario;
+        this.aula = aula;
+        this.avaliacao = avaliacao;
+    }
 }

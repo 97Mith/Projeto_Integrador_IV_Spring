@@ -24,4 +24,12 @@ public class Professor extends Pessoa{
 
     @OneToMany
     private List<Aula> aulas;
+
+    public Professor(String nome, String cpf, String tel, String email, String senha, String cargo, boolean estaAtivo,
+                     List<Turma> turmas, String licenca, List<Aula> aulas) {
+        super(nome, cpf, tel, email, senha, cargo, estaAtivo);  // Chama o construtor de Pessoa
+        this.turmas = turmas;
+        this.licenca = licenca;
+        this.aulas = aulas;
+    }
 }

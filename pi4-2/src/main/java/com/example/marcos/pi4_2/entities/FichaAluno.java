@@ -23,4 +23,10 @@ public class FichaAluno {
     @ManyToOne
     @JoinColumn(name = "turma")
     private Turma turma;
+
+    public FichaAluno(double nota, String obs, Turma turma) {
+        this.nota = nota;
+        this.obs = obs;
+        this.turma = turma;
+    }
 }

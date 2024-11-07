@@ -31,4 +31,11 @@ public class Modalidade {
     @OneToMany
     @JoinColumn
     private List<Turma> turmas;
+
+    public Modalidade(String nome, String descricao, String categoria, List<Turma> turmas) {
+        this.nome = nome;
+        this.descricao = descricao;
+        this.categoria = categoria;
+        this.turmas = turmas;
+    }
 }

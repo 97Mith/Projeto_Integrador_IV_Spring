@@ -32,4 +32,11 @@ public class Aula {
     @OneToMany
     @JoinColumn(name = "alunos_presentes_id")
     private List<FichaAluno> presentes;
+
+    public Aula(Professor professor, double avaliacaoDaAula, List<ComentarioAula> comentarioAulas, List<FichaAluno> presentes) {
+        this.professor = professor;
+        this.avaliacaoDaAula = avaliacaoDaAula;
+        this.comentarioAulas = comentarioAulas;
+        this.presentes = presentes;
+    }
 }
