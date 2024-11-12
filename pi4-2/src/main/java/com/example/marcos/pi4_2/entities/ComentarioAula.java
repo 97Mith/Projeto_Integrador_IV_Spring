@@ -10,7 +10,7 @@ import lombok.Setter;
 @Setter
 @Entity
 @NoArgsConstructor
-@Table(name = "comentario_aula")
+@Table(name = "tb_comentario_aula")
 public class ComentarioAula {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

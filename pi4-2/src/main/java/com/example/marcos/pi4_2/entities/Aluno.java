@@ -15,7 +15,7 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @SuperBuilder
-@Table(name = "aluno")
+@Table(name = "tb_alunos")
 public class Aluno extends Pessoa{
 
     @Column(name = "data_de_nascimento", nullable = false)

@@ -19,13 +19,17 @@ public class Turma {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Setter(AccessLevel.NONE)
     private Integer id;
+
     @ManyToOne
     private Modalidade modalidade;
+
     @Column(name = "hora_do_treino")
     private Date horarioTreino;
+
     @ManyToOne
     @JoinColumn(name = "professor_id")
     private Professor professor;
+
     @OneToMany
     private List<FichaAluno> alunos;
 
