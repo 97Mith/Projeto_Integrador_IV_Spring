@@ -43,6 +43,11 @@ public class ModalidadeServiceImplement implements ModalidadeService {
         return "Modalidade excluída com sucesso!";
     }
 
+    @Override
+    public List<Modalidade> findByNome(String nome) {
+        return modalidadeRepository.findByNome(nome);
+    }
+
     private Modalidade returnModalidade(Integer id) {
         return modalidadeRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Modalidade não encontrada no banco de dados"));

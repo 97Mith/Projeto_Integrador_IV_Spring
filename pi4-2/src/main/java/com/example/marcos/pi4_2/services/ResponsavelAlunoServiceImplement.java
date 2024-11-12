@@ -43,6 +43,17 @@ public class ResponsavelAlunoServiceImplement implements ResponsavelAlunoService
         return "Responsável pelo aluno excluído com sucesso!";
     }
 
+    @Override
+    public List<ResponsavelAluno> findByNome(String nome) {
+        return responsavelAlunoRepository.findByNome(nome);
+    }
+
+    @Override
+    public ResponsavelAluno findByCpf(String cpf) {
+        return responsavelAlunoRepository.findByCpf(cpf)
+                .orElseThrow(() -> new RuntimeException("Responsável não encontrado!"));
+    }
+
     private ResponsavelAluno returnResponsavelAluno(Integer id) {
         return responsavelAlunoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Responsável pelo aluno não encontrado no banco de dados"));

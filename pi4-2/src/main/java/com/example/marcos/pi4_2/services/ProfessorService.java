@@ -10,4 +10,6 @@ public interface ProfessorService {
     Professor register(Professor aula);
     Professor update(Professor aula, Integer id);
     String delete(Integer id);
+    List<Professor> findByNome(String nome);
+    Professor findByCpf(String cpf);
 }

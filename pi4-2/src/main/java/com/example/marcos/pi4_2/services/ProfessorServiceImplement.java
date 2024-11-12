@@ -43,6 +43,17 @@ public class ProfessorServiceImplement implements ProfessorService {
         return "Professor excluído com sucesso!";
     }
 
+    @Override
+    public List<Professor> findByNome(String nome) {
+        return professorRepository.findByNome(nome);
+    }
+
+    @Override
+    public Professor findByCpf(String cpf) {
+        return professorRepository.findByCpf(cpf)
+                .orElseThrow(() -> new RuntimeException("Professor não encontrado com este CPF!"));
+    }
+
     private Professor returnProfessor(Integer id) {
         return professorRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Professor não encontrado no banco de dados"));

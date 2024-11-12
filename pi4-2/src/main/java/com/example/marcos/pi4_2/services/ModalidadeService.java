@@ -11,4 +11,5 @@ public interface ModalidadeService {
     Modalidade register(Modalidade aula);
     Modalidade update(Modalidade aula, Integer id);
     String delete(Integer id);
+    List<Modalidade> findByNome(String nome);
 }

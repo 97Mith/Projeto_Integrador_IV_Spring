@@ -12,4 +12,6 @@ public interface ResponsavelAlunoService {
     ResponsavelAluno register(ResponsavelAluno aula);
     ResponsavelAluno update(ResponsavelAluno aula, Integer id);
     String delete(Integer id);
+    List<ResponsavelAluno> findByNome(String nome);
+    ResponsavelAluno findByCpf(String cpf);
 }
