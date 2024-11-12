@@ -21,6 +21,15 @@ public class AlunoController {
     public ResponseEntity<Aluno> findById(@PathVariable Integer id) {
         return ResponseEntity.ok().body(alunoService.findById(id));
     }
+    @GetMapping(value = "nome/{nome}")
+    public ResponseEntity<List<Aluno>> findByName(@PathVariable String nome) {
+        return ResponseEntity.ok().body(alunoService.findByNome(nome));
+    }
+
+    @GetMapping(value = "cpf/{cpf}")
+    public ResponseEntity<Aluno> findByCpf(@PathVariable String cpf) {
+        return ResponseEntity.ok().body(alunoService.findByCpf(cpf));
+    }
 
     @GetMapping
     public ResponseEntity<List<Aluno>> findAll() {

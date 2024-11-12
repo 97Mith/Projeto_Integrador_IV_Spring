@@ -44,6 +44,17 @@ public class AlunoServiceImplement implements AlunoService{
         return "Alunoexcluído com sucesso!";
     }
 
+    @Override
+    public List<Aluno> findByNome(String nome) {
+        return alunoRepository.findByNome(nome);
+    }
+
+    @Override
+    public Aluno findByCpf(String cpf) {
+        return alunoRepository.findByCpf(cpf)
+                .orElseThrow(() -> new RuntimeException("Aluno com CPF " + cpf + " não encontrado"));
+    }
+
     private Aluno returnAluno(Integer id){
         return alunoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Não encontrado no banco de dados"));

@@ -17,10 +17,6 @@ import java.util.List;
 @SuperBuilder
 @Table(name = "aluno")
 public class Aluno extends Pessoa{
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Setter(AccessLevel.NONE)
-    private Integer id;
 
     @Column(name = "data_de_nascimento", nullable = false)
     private Date dataNasc;

@@ -10,4 +10,6 @@ public interface AlunoService {
     Aluno register(Aluno aluno);
     Aluno update(Aluno aluno, Integer id);
     String delete(Integer id);
+    List<Aluno> findByNome(String nome);
+    Aluno findByCpf(String cpf);
 }
