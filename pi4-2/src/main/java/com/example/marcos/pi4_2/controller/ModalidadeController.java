@@ -21,6 +21,10 @@ public class ModalidadeController {
     public ResponseEntity<Modalidade> findById(@PathVariable Integer id) {
         return ResponseEntity.ok().body(modalidadeService.findById(id));
     }
+    @GetMapping(value = "/nome/{nome}")
+    public ResponseEntity<List<Modalidade>> findByNome(@PathVariable String nome) {
+        return ResponseEntity.ok().body(modalidadeService.findByNome(nome));
+    }
 
     @GetMapping
     public ResponseEntity<List<Modalidade>> findAll() {

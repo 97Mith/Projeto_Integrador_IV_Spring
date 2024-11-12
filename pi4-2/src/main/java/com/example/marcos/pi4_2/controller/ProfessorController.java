@@ -21,6 +21,14 @@ public class ProfessorController {
     public ResponseEntity<Professor> findById(@PathVariable Integer id) {
         return ResponseEntity.ok().body(professorService.findById(id));
     }
+    @GetMapping(value = "nome/{nome}")
+    public ResponseEntity<List<Professor>> findByNome(@PathVariable String nome) {
+        return ResponseEntity.ok().body(professorService.findByNome(nome));
+    }
+    @GetMapping(value = "cpf/{cpf}")
+    public ResponseEntity<Professor> findByCpf(@PathVariable String cpf) {
+        return ResponseEntity.ok().body(professorService.findByCpf(cpf));
+    }
 
     @GetMapping
     public ResponseEntity<List<Professor>> findAll() {

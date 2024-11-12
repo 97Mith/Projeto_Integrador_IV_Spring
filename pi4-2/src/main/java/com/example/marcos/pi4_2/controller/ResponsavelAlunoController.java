@@ -25,6 +25,14 @@ public class ResponsavelAlunoController {
     public ResponseEntity<List<ResponsavelAluno>> findAll() {
         return ResponseEntity.ok().body(responsavelService.findAll());
     }
+    @GetMapping(value = "/nome/{nome}")
+    public ResponseEntity<List<ResponsavelAluno>> findByNome(@PathVariable String nome) {
+        return ResponseEntity.ok().body(responsavelService.findByNome(nome));
+    }
+    @GetMapping(value = "/cpf/{cpf}")
+    public ResponseEntity<ResponsavelAluno> findByCpf(@PathVariable String cpf) {
+        return ResponseEntity.ok().body(responsavelService.findByCpf(cpf));
+    }
 
     @PostMapping
     public ResponseEntity<ResponsavelAluno> register(@RequestBody ResponsavelAluno reponsavel, UriComponentsBuilder uriBuilder) {
