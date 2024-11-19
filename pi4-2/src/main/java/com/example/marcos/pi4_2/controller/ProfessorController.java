@@ -5,18 +5,30 @@ import com.example.marcos.pi4_2.entities.Professor;
 import com.example.marcos.pi4_2.services.ProfessorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
 
-@RestController
-@RequestMapping(value = "/professor")
+@Controller
+@RequestMapping(value = "/professores")
 @RequiredArgsConstructor
 public class ProfessorController {
     private final ProfessorService professorService;
 
+    //-----------------------------------------------
+    @GetMapping("/cadastrar")
+    public String cadastrar(){
+        return "/professores/cadastro";
+    }
+    @GetMapping("/listar")
+    public String listar(){
+        return "/professores/lista";
+    }
+
+    //------------------------------------------------
     @GetMapping(value = "/{id}")
     public ResponseEntity<Professor> findById(@PathVariable Integer id) {
         return ResponseEntity.ok().body(professorService.findById(id));

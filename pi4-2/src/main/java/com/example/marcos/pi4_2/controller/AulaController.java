@@ -4,18 +4,30 @@ import com.example.marcos.pi4_2.entities.Aula;
 import com.example.marcos.pi4_2.services.AulaService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping(value = "/aulas")
 @RequiredArgsConstructor
 public class AulaController {
 
     private final AulaService aulaService;
+    //-----------------------------------------------
+    @GetMapping("/cadastrar")
+    public String cadastrar(){
+        return "/aulas/cadastro";
+    }
+    @GetMapping("/listar")
+    public String listar(){
+        return "/aulas/lista";
+    }
+
+    //------------------------------------------------
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<Aula> findById(@PathVariable Integer id) {

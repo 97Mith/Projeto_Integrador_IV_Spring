@@ -1,87 +1,53 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  xmlns:th="http://www.thymeleaf.org"
+	  layout:decorate="~{layout}">
 <head>
-	<title>Cadastro de Aluno</title>
 	<meta charset="UTF-8"/>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-	<link rel="icon" href="/image/favicon.png"/>
-
-	<!-- Bootstrap core CSS -->
-	<link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
-	<link href="/webjars/open-iconic/font/css/open-iconic-bootstrap.min.css" rel="stylesheet"/>
-	<!-- Custom styles for this template -->
-	<link href="/css/style.css" rel="stylesheet"/>
 </head>
 <body>
-<header>
-	<nav class="navbar navbar-dark bg-dark fixed-top">
-		<div class="container-fluid">
-			<a class="navbar-brand" href="#">Cadastro de Alunos</a>
-		</div>
-	</nav>
-</header>
 
-<div class="layout-main">
-	<!-- Painel Lateral -->
-	<aside>
-		<nav class="sidebar sidebar-open">
-			<ul class="nav nav-pills">
-				<li class="nav-item"><a class="nav-link" href="/"> <i class="oi oi-home"></i> <span>Home</span></a></li>
-			</ul>
-			<ul class="nav nav-pills">
-				<li class="nav-item"><span class="nav-link active">Aulas</span></li>
-				<li class="nav-item"><a class="nav-link" href="/aulas/cadastrar"> <i class="oi oi-plus"></i> <span>Cadastrar</span></a></li>
-				<li class="nav-item"><a class="nav-link" href="/aulas/listar"> <i class="oi oi-spreadsheet"></i> <span>Listar</span></a></li>
-			</ul>
-			<ul class="nav nav-pills">
-				<li class="nav-item"><span class="nav-link active">Alunos</span></li>
-				<li class="nav-item"><a class="nav-link" href="/alunos/cadastrar"> <i class="oi oi-plus"></i> <span>Cadastrar</span></a></li>
-				<li class="nav-item"><a class="nav-link" href="/alunos/listar"> <i class="oi oi-spreadsheet"></i> <span>Listar</span></a></li>
-			</ul>
-			<ul class="nav nav-pills">
-				<li class="nav-item"><span class="nav-link active">Professores</span></li>
-				<li class="nav-item"><a class="nav-link" href="/professores/cadastrar"> <i class="oi oi-plus"></i> <span>Cadastrar</span></a></li>
-				<li class="nav-item"><a class="nav-link" href="/professores/listar"> <i class="oi oi-spreadsheet"></i> <span>Listar</span></a></li>
-			</ul>
-		</nav>
-	</aside>
+
+
 
 	<!-- Formulário de Cadastro -->
-	<section class="layout-content">
+	<section class="layout-content" layout:fragment="corpo">
 		<div class="container mt-5 pt-3">
-			<form action="/alunos/salvar" method="POST">
+			<form th:action="@{/alunos/salvar}" th:object="${aluno}" method="POST">
 				<!-- Dados Pessoais -->
 				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="nome">Nome</label>
-						<input type="text" class="form-control" id="nome" name="nome" placeholder="Nome Completo" required>
+						<input type="text" class="form-control" id="nome" th:field="*{nome}"
+							   placeholder="Nome Completo" required>
 					</div>
 					<div class="form-group col-md-6">
 						<label for="cpf">CPF</label>
-						<input type="text" class="form-control" id="cpf" name="cpf" data-mask="000.000.000-00" placeholder="123.456.789-10" required>
+						<input type="text" class="form-control" id="cpf" th:field="*{cpf}"
+							   data-mask="000.000.000-00" placeholder="123.456.789-10" required>
 					</div>
 				</div>
 
 				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="tel">Telefone</label>
-						<input type="text" class="form-control" id="tel" name="tel" data-mask="(00) 00000-0000" placeholder="(11) 98765-4321">
+						<input type="text" class="form-control" id="tel" th:field="*{tel}" data-mask="(00) 00000-0000" placeholder="(11) 98765-4321">
 					</div>
 					<div class="form-group col-md-6">
 						<label for="email">Email</label>
-						<input type="email" class="form-control" id="email" name="email" placeholder="email@exemplo.com" required>
+						<input type="email" class="form-control" id="email" th:field="*{email}" placeholder="email@exemplo.com" required>
 					</div>
 				</div>
 
 				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="senha">Senha</label>
-						<input type="password" class="form-control" id="senha" name="senha" placeholder="Senha" required>
+						<input type="password" class="form-control" id="senha" th:field="*{senha}" placeholder="Senha" required>
 					</div>
 					<div class="form-group col-md-6">
 						<label for="dataNasc">Data de Nascimento</label>
-						<input type="date" class="form-control" id="dataNasc" name="dataNasc" required>
+						<input type="date" class="form-control" id="dataNasc" th:field="*{dataNasc}" required>
 					</div>
 				</div>
 
@@ -110,17 +76,5 @@
 			</form>
 		</div>
 	</section>
-</div>
-
-<footer class="layout-footer mt-5">
-	<div class="container">
-		<span class="footer-copy">&copy; 2024 Cadastro de Alunos. Todos os direitos reservados.</span>
-	</div>
-</footer>
-
-<!-- Scripts -->
-<script src="/webjars/jquery/jquery.min.js"></script>
-<script src="/webjars/jquery-mask-plugin/dist/jquery.mask.min.js"></script>
-<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>

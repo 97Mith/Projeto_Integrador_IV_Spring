@@ -3,6 +3,7 @@ package com.example.marcos.pi4_2.controller;
 import com.example.marcos.pi4_2.entities.Aluno;
 import com.example.marcos.pi4_2.services.AlunoService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -16,15 +17,21 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AlunoController {
 
+    @Autowired
     private final AlunoService alunoService;
 
     @GetMapping("/cadastrar")
-    public String cadastrar(){
+    public String cadastrar(Aluno aluno){
         return "/alunos/cadastro";
     }
     @GetMapping("/listar")
     public String listar(){
         return "/alunos/lista";
+    }
+    @PostMapping("/salvar")
+    public String salvar(Aluno aluno){
+        alunoService.register(aluno);
+        return "redirect:/alunos/cadastro";
     }
 
     // metodos do curso acima
