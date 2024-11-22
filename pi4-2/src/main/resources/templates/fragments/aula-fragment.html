@@ -1,0 +1,54 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!-- aula-fragment.html -->
+<div th:fragment="aula-card(aula, index)"
+     th:classappend="${index.odd} ? 'bg-light' : 'bg-white'"
+     class="card mb-4">
+    <div class="card-header">
+        <h5 th:text="${aula.nome} + ' - ' + ${aula.professor.nome}"></h5>
+    </div>
+    <div class="card-body">
+        <p><strong>Data e Hora:</strong> <span th:text="${#temporals.format(aula.dataEHoraTreino, 'dd/MM/yyyy HH:mm')}"></span></p>
+        <p><strong>Avaliação da Aula:</strong>
+            <span th:each="star : ${#numbers.sequence(1, 5)}">
+                <i th:classappend="${star <= aula.avaliacaoDaAula} ? 'fas fa-star text-warning' : 'far fa-star'"></i>
+            </span>
+        </p>
+
+        <!-- Comentários da Aula -->
+        <h6>Comentários:</h6>
+        <ul class="list-group mb-3">
+            <li class="list-group-item" th:each="comentario : ${aula.comentarioAulas}">
+                <strong th:text="${comentario.aluno.nome}">Aluno</strong>:
+                <span th:text="${comentario.comentario}">Comentário...</span>
+                <div>
+                    <small>
+                        <strong>Avaliação:</strong>
+                        <span th:each="star : ${#numbers.sequence(1, 5)}">
+                            <i th:classappend="${star <= comentario.avaliacao} ? 'fas fa-star text-warning' : 'far fa-star'"></i>
+                        </span>
+                    </small>
+                </div>
+            </li>
+        </ul>
+
+        <!-- Formulário para adicionar comentários -->
+        <h6>Adicionar Comentário:</h6>
+        <form method="post" th:action="@{/aulas/{id}/comentarios(id=${aula.id})}">
+            <div class="mb-3">
+                <textarea class="form-control" name="comentario" rows="3" placeholder="Escreva seu comentário..." required></textarea>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Avaliação:</label>
+                <div class="d-flex align-items-center">
+                    <span th:each="star : ${#numbers.sequence(1, 5)}" class="me-2">
+                        <input type="radio" th:id="'star' + ${star}" th:name="avaliacao" th:value="${star}" class="d-none" required/>
+                        <label th:for="'star' + ${star}">
+                            <i class="far fa-star" style="cursor: pointer;"></i>
+                        </label>
+                    </span>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
+    </div>
+</div>

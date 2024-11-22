@@ -40,7 +40,7 @@ body {
     height: 100vh;
     border-top: 1px solid #eee;
     border-right: 1px solid #eee;    
-    background-color: #f8f9fa;
+    background-color: #cae4fd;
     flex-shrink: 0;
     overflow: hidden;
     transition: width .5s;
@@ -117,4 +117,10 @@ body {
 	display: block;
 	color: #777777;
 	text-align: center;
+}
+.navbar-custom {
+    background-color: #1D3E5B !important;
+}
+.navbar-custom .navbar-brand {
+    color: #ffffff !important;
 }
