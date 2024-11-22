@@ -1,13 +1,12 @@
 package com.example.marcos.pi4_2.entities;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Getter
@@ -19,7 +18,7 @@ import java.util.List;
 public class Aluno extends Pessoa{
 
     @Column(name = "data_de_nascimento", nullable = false)
-    private Date dataNasc;
+    private LocalDate dataNasc;
 
     @Column(name = "pontuacao")
     private Integer rating;
@@ -33,7 +32,7 @@ public class Aluno extends Pessoa{
     private List<ComentarioAula> historicoComentarios;
 
     public Aluno(String nome, String cpf, String tel, String email, String senha, String cargo, boolean estaAtivo,
-                 Date dataNasc, Integer rating, List<FichaAluno> fichasAluno, List<ComentarioAula> historicoComentarios) {
+                 LocalDate dataNasc, Integer rating, List<FichaAluno> fichasAluno, List<ComentarioAula> historicoComentarios) {
         super(nome, cpf, tel, email, senha, cargo, estaAtivo);
         this.dataNasc = dataNasc;
         this.rating = rating;

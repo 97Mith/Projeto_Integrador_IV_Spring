@@ -2,45 +2,49 @@ package com.example.marcos.pi4_2.controller;
 
 import com.example.marcos.pi4_2.entities.FaturaAluno;
 import com.example.marcos.pi4_2.services.FaturaAlunoService;
+import com.example.marcos.pi4_2.services.ResponsavelAlunoService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.UriComponentsBuilder;
 
-import java.net.URI;
-import java.util.List;
-
-@RestController
-@RequestMapping(value = "/faturas-aluno")
+@Controller
+@RequestMapping("/faturas")
 @RequiredArgsConstructor
 public class FaturaAlunoController {
 
-    private final FaturaAlunoService faturaAlunoService;
+    private final FaturaAlunoService faturaService;
+    private final ResponsavelAlunoService responsavelService;
 
-    @GetMapping(value = "/{id}")
-    public ResponseEntity<FaturaAluno> findById(@PathVariable Integer id) {
-        return ResponseEntity.ok().body(faturaAlunoService.findById(id));
+    @GetMapping("/cadastrar")
+    public String cadastrar(ModelMap model) {
+        model.addAttribute("fatura", new FaturaAluno());
+        model.addAttribute("responsaveis", responsavelService.findAll());
+        return "faturas/cadastro";
     }
 
-    @GetMapping
-    public ResponseEntity<List<FaturaAluno>> findAll() {
-        return ResponseEntity.ok().body(faturaAlunoService.findAll());
+    @PostMapping("/salvar")
+    public String salvar(FaturaAluno faturaAluno) {
+        faturaService.register(faturaAluno);
+        return "redirect:/faturas/listar";
     }
 
-    @PostMapping
-    public ResponseEntity<FaturaAluno> register(@RequestBody FaturaAluno faturaAluno, UriComponentsBuilder uriBuilder) {
-        FaturaAluno faturaCriada = faturaAlunoService.register(faturaAluno);
-        URI uri = uriBuilder.path("/faturas-aluno/{id}").buildAndExpand(faturaCriada.getId()).toUri();
-        return ResponseEntity.created(uri).body(faturaCriada);
+    // Página de Listagem de Faturas
+    @GetMapping("/listar")
+    public String listar(ModelMap model) {
+        model.addAttribute("faturas", faturaService.findAll());
+        return "faturas/lista";
     }
 
-    @PutMapping(value = "/{id}")
-    public ResponseEntity<FaturaAluno> update(@RequestBody FaturaAluno faturaAluno, @PathVariable(name = "id") Integer id) {
-        return ResponseEntity.ok().body(faturaAlunoService.update(faturaAluno, id));
+    @GetMapping("/editar/{id}")
+    public String preEditarFatura(@PathVariable("id") Integer id, ModelMap model) {
+        model.addAttribute("fatura", faturaService.findById(id));
+        return "/faturas/cadastro";
     }
 
-    @DeleteMapping(value = "/{id}")
-    public ResponseEntity<String> delete(@PathVariable(value = "id") Integer id) {
-        return ResponseEntity.ok().body(faturaAlunoService.delete(id));
+    @PostMapping("/editar/{id}")
+    public String editarFatura(FaturaAluno faturaAluno, @PathVariable("id") Integer id) {
+        faturaService.update(faturaAluno, id);
+        return "redirect:/faturas/listar";
     }
 }

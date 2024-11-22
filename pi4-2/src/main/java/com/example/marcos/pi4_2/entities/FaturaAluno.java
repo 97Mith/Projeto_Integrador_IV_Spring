@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @Getter
@@ -19,15 +19,18 @@ public class FaturaAluno {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(nullable = true)
-    private Date vencimento;
+    private LocalDate vencimento;
     @Column(nullable = false)
     private double valor;
     @ManyToOne
     private ResponsavelAluno responsavelAluno;
+    @Column(nullable = false)
+    private boolean estaPago;
 
-    public FaturaAluno(Date vencimento, double valor, ResponsavelAluno responsavelAluno) {
+    public FaturaAluno(LocalDate vencimento, double valor, ResponsavelAluno responsavelAluno, boolean estaPago) {
         this.vencimento = vencimento;
         this.valor = valor;
         this.responsavelAluno = responsavelAluno;
+        this.estaPago = estaPago;
     }
 }

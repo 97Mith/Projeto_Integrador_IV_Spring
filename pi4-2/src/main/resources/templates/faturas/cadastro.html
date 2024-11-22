@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  xmlns:th="http://www.thymeleaf.org"
+	  layout:decorate="~{layout}">
+<head>
+	<meta charset="UTF-8"/>
+	<title>Cadastro de Faturas</title>
+</head>
+<body>
+<!-- Formulário de Cadastro -->
+<section class="layout-content" layout:fragment="corpo">
+	<div class="container mt-5 pt-3">
+		<h2>Cadastro de Fatura</h2>
+		<form th:action="${fatura.id != null} ? @{/faturas/editar/{id}(id=${fatura.id})} : @{/faturas/salvar}"
+			  th:object="${fatura}" method="POST">
+			<!-- Vencimento -->
+			<div class="form-group">
+				<label for="vencimento">Data de Vencimento</label>
+				<input type="date" class="form-control" id="vencimento" th:field="*{vencimento}" required>
+			</div>
+
+			<!-- Valor -->
+			<div class="form-group">
+				<label for="valor">Valor (R$)</label>
+				<input type="number" step="0.01" class="form-control" id="valor" th:field="*{valor}" placeholder="Valor da fatura" required>
+			</div>
+
+			<!-- Selecionar Responsável -->
+			<div class="form-group">
+				<label for="responsavel">Responsável</label>
+				<select class="form-control" id="responsavel" th:field="*{responsavelAluno}" required>
+					<option value="" disabled selected>Selecione um responsável...</option>
+					<option th:each="responsavel : ${responsaveis}" th:value="${responsavel.id}" th:text="${responsavel.nome}"></option>
+				</select>
+			</div>
+
+			<!-- Está Pago -->
+			<div class="form-check">
+				<input type="checkbox" class="form-check-input" id="estaPago" th:field="*{estaPago}">
+				<label class="form-check-label" for="estaPago">Está Pago?</label>
+			</div>
+
+			<!-- Campo Oculto para ID -->
+			<input type="hidden" id="id" th:field="*{id}"/>
+
+			<!-- Botões -->
+			<button type="submit" class="btn btn-primary mt-3">Salvar</button>
+			<a href="/faturas/listar" class="btn btn-secondary mt-3">Cancelar</a>
+		</form>
+	</div>
+</section>
+</body>
+</html>

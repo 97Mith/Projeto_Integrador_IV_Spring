@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -25,14 +26,32 @@ public class AlunoController {
         return "/alunos/cadastro";
     }
     @GetMapping("/listar")
-    public String listar(){
+    public String listar(ModelMap model){
+
+        model.addAttribute("alunos", alunoService.findAll());
         return "/alunos/lista";
     }
     @PostMapping("/salvar")
     public String salvar(Aluno aluno){
+        aluno.setCargo("Aluno");
+        aluno.setEstaAtivo(true);
         alunoService.register(aluno);
-        return "redirect:/alunos/cadastro";
+        return "redirect:/alunos/cadastrar";
     }
+
+    @GetMapping("/editar/{id}")
+    public String preEditarAluno(@PathVariable("id") Integer id, ModelMap model) {
+        model.addAttribute("aluno", alunoService.findById(id));
+        return "/alunos/cadastro";
+    }
+
+    @PostMapping("/editar/{id}")
+    public String editarAluno(Aluno aluno, @PathVariable("id") Integer id) {
+        aluno.setCargo("Aluno");
+        alunoService.update(aluno, id);
+        return "redirect:/alunos/listar";
+    }
+
 
     // metodos do curso acima
     @GetMapping(value = "/{id}")
@@ -61,10 +80,10 @@ public class AlunoController {
         return ResponseEntity.created(uri).body(alunoCriado);
     }
 
-    @PutMapping(value = "/{id}")
+    /*@PutMapping(value = "/{id}")
     public ResponseEntity<Aluno> update(@RequestBody Aluno aluno, @PathVariable(name = "id") Integer id) {
         return ResponseEntity.ok().body(alunoService.update(aluno, id));
-    }
+    }*/
 
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<String> delete(@PathVariable(value = "id") Integer id) {

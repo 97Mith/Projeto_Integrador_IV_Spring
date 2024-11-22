@@ -3,51 +3,46 @@ package com.example.marcos.pi4_2.controller;
 import com.example.marcos.pi4_2.entities.ResponsavelAluno;
 import com.example.marcos.pi4_2.services.ResponsavelAlunoService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.UriComponentsBuilder;
 
-import java.net.URI;
-import java.util.List;
-
-@RestController
-@RequestMapping(value = "/responsavel-aluno")
+@Controller
+@RequestMapping(value = "/responsaveis")
 @RequiredArgsConstructor
 public class ResponsavelAlunoController {
     private final ResponsavelAlunoService responsavelService;
 
-    @GetMapping(value = "/{id}")
-    public ResponseEntity<ResponsavelAluno> findById(@PathVariable Integer id) {
-        return ResponseEntity.ok().body(responsavelService.findById(id));
+    @GetMapping("/cadastrar")
+    public String cadastrar(ModelMap model) {
+        model.addAttribute("responsavel", new ResponsavelAluno());
+        return "responsaveis/cadastro";
     }
 
-    @GetMapping
-    public ResponseEntity<List<ResponsavelAluno>> findAll() {
-        return ResponseEntity.ok().body(responsavelService.findAll());
-    }
-    @GetMapping(value = "/nome/{nome}")
-    public ResponseEntity<List<ResponsavelAluno>> findByNome(@PathVariable String nome) {
-        return ResponseEntity.ok().body(responsavelService.findByNome(nome));
-    }
-    @GetMapping(value = "/cpf/{cpf}")
-    public ResponseEntity<ResponsavelAluno> findByCpf(@PathVariable String cpf) {
-        return ResponseEntity.ok().body(responsavelService.findByCpf(cpf));
+    // Exibe a página de listagem
+    @GetMapping("/listar")
+    public String listar(ModelMap model) {
+        model.addAttribute("responsaveis", responsavelService.findAll());
+        return "responsaveis/lista";
     }
 
-    @PostMapping
-    public ResponseEntity<ResponsavelAluno> register(@RequestBody ResponsavelAluno reponsavel, UriComponentsBuilder uriBuilder) {
-        ResponsavelAluno responsavelAluno = responsavelService.register(reponsavel);
-        URI uri = uriBuilder.path("/responsavel-aluno/{id}").buildAndExpand(responsavelAluno.getId()).toUri();
-        return ResponseEntity.created(uri).body(responsavelAluno);
+    @PostMapping("/salvar")
+    public String salvar(ResponsavelAluno responsavelAluno) {
+        responsavelAluno.setCargo("Responsável");
+        responsavelAluno.setEstaAtivo(true);
+        responsavelService.register(responsavelAluno);
+        return "redirect:/responsaveis/listar";
     }
 
-    @PutMapping(value = "/{id}")
-    public ResponseEntity<ResponsavelAluno> update(@RequestBody ResponsavelAluno responsavelAluno, @PathVariable(name = "id") Integer id) {
-        return ResponseEntity.ok().body(responsavelService.update(responsavelAluno, id));
+    @GetMapping("/editar/{id}")
+    public String preEditar(@PathVariable("id") Integer id, ModelMap model) {
+        model.addAttribute("responsavel", responsavelService.findById(id));
+        return "responsaveis/cadastro";
     }
 
-    @DeleteMapping(value = "/{id}")
-    public ResponseEntity<String> delete(@PathVariable(value = "id") Integer id) {
-        return ResponseEntity.ok().body(responsavelService.delete(id));
+    @PostMapping("/editar")
+    public String editar(ResponsavelAluno responsavelAluno) {
+        responsavelService.update(responsavelAluno);
+        return "redirect:/responsaveis/listar";
     }
 }

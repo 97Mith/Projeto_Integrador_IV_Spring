@@ -2,47 +2,113 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Lateral com Accordion</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 <nav class="sidebar sidebar-open" th:fragment="nav-sidebar">
-    <ul class="nav nav-pills">
-        <li class="nav-item"><a class="nav-link " href="/"> <i
-                class="oi oi-home"></i> <span>Home</span>
-        </a></li>
-    </ul>
+    <div class="accordion" id="sidebarAccordion">
 
-    <ul class="nav nav-pills">
-        <li class="nav-item"><span class="nav-link active" >Aulas</span></li>
-        <li class="nav-item"><a class="nav-link"
-                                href="/aulas/cadastrar"> <i class="oi oi-plus"></i> <span>Cadastrar</span>
-        </a></li>
-        <li class="nav-item"><a class="nav-link"
-                                href="/aulas/listar"> <i class="oi oi-spreadsheet"></i>
-            <span>Listar </span>
-        </a></li>
-    </ul>
+        <!-- Seção: Aulas -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingAulas">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAulas" aria-expanded="false" aria-controls="collapseAulas">
+                    Aulas
+                </button>
+            </h2>
+            <div id="collapseAulas" class="accordion-collapse collapse" aria-labelledby="headingAulas" data-bs-parent="#sidebarAccordion">
+                <div class="accordion-body">
+                    <ul class="nav nav-pills flex-column">
+                        <li class="nav-item"><a class="nav-link" href="/aulas/cadastrar"><i class="oi oi-plus"></i> Cadastrar</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/aulas/listar"><i class="oi oi-spreadsheet"></i> Listar</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
 
-    <ul class="nav nav-pills">
-        <li class="nav-item"><span class="nav-link active" >Alunos</span></li>
-        <li class="nav-item"><a class="nav-link"
-                                href="/alunos/cadastrar"> <i class="oi oi-plus"></i> <span>Cadastrar </span>
-        </a></li>
-        <li class="nav-item"><a class="nav-link"
-                                href="/alunos/listar"> <i
-                class="oi oi-spreadsheet"></i> <span>Listar </span>
-        </a></li>
-    </ul>
+        <!-- Seção: Alunos -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingAlunos">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAlunos" aria-expanded="false" aria-controls="collapseAlunos">
+                    Alunos
+                </button>
+            </h2>
+            <div id="collapseAlunos" class="accordion-collapse collapse" aria-labelledby="headingAlunos" data-bs-parent="#sidebarAccordion">
+                <div class="accordion-body">
+                    <ul class="nav nav-pills flex-column">
+                        <li class="nav-item"><a class="nav-link" href="/alunos/cadastrar"><i class="oi oi-plus"></i> Cadastrar</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/alunos/listar"><i class="oi oi-spreadsheet"></i> Listar</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
 
-    <ul class="nav nav-pills">
-        <li class="nav-item"><span class="nav-link active">Professores</span></li>
-        <li class="nav-item"><a class="nav-link"
-                                href="/professores/cadastrar"> <i class="oi oi-plus"></i> <span>Cadastrar </span>
-        </a></li>
-        <li class="nav-item"><a class="nav-link"
-                                href="/professores/listar"> <i class="oi oi-spreadsheet"></i> <span>Listar </span>
-        </a></li>
-    </ul>
+        <!-- Seção: Professores -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingProfessores">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseProfessores" aria-expanded="false" aria-controls="collapseProfessores">
+                    Professores
+                </button>
+            </h2>
+            <div id="collapseProfessores" class="accordion-collapse collapse" aria-labelledby="headingProfessores" data-bs-parent="#sidebarAccordion">
+                <div class="accordion-body">
+                    <ul class="nav nav-pills flex-column">
+                        <li class="nav-item"><a class="nav-link" href="/professores/cadastrar"><i class="oi oi-plus"></i> Cadastrar</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/professores/listar"><i class="oi oi-spreadsheet"></i> Listar</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Seção: Responsável pelo Aluno -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingResponsaveis">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseResponsaveis" aria-expanded="false" aria-controls="collapseResponsaveis">
+                    Responsável pelo Aluno
+                </button>
+            </h2>
+            <div id="collapseResponsaveis" class="accordion-collapse collapse" aria-labelledby="headingResponsaveis" data-bs-parent="#sidebarAccordion">
+                <div class="accordion-body">
+                    <ul class="nav nav-pills flex-column">
+                        <li class="nav-item"><a class="nav-link" href="/responsaveis/cadastrar"><i class="oi oi-plus"></i> Cadastrar</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/responsaveis/listar"><i class="oi oi-spreadsheet"></i> Listar</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Seção: Faturas -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingFaturas">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFaturas" aria-expanded="false" aria-controls="collapseFaturas">
+                    Faturas
+                </button>
+            </h2>
+            <div id="collapseFaturas" class="accordion-collapse collapse" aria-labelledby="headingFaturas" data-bs-parent="#sidebarAccordion">
+                <div class="accordion-body">
+                    <ul class="nav nav-pills flex-column">
+                        <li class="nav-item"><a class="nav-link" href="/faturas/cadastrar"><i class="oi oi-plus"></i> Cadastrar</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/faturas/listar"><i class="oi oi-spreadsheet"></i> Listar</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sair -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingSair">
+                <button class="accordion-button" type="button">
+                    <a class="nav-link text-danger" href="/logout"><i class="oi oi-account-logout"></i> Sair</a>
+                </button>
+            </h2>
+        </div>
+
+    </div>
 </nav>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -14,8 +14,10 @@
 	<!-- Formulário de Cadastro -->
 	<section class="layout-content" layout:fragment="corpo">
 		<div class="container mt-5 pt-3">
-			<form th:action="@{/alunos/salvar}" th:object="${aluno}" method="POST">
+			<form th:action="${aluno.id != null} ? @{/alunos/editar/{id}(id=${aluno.id})} : @{/alunos/salvar}"
+				  th:object="${aluno}" method="POST">
 				<!-- Dados Pessoais -->
+
 				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="nome">Nome</label>
@@ -69,10 +71,10 @@
 				<div class="form-group">
 					<button type="button" class="btn btn-info">Selecionar Responsável pelo Aluno</button>
 				</div>
+				<input type="hidden" id="id" th:field="*{id}"/>
 
 				<!-- Botões -->
 				<button type="submit" class="btn btn-primary">Salvar</button>
-				<a href="/alunos/listar" class="btn btn-secondary">Cancelar</a>
 			</form>
 		</div>
 	</section>
