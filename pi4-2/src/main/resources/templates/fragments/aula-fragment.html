@@ -1,10 +1,14 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <!-- aula-fragment.html -->
-<div th:fragment="aula-card(aula, index)"
+<div th:fragment="aula-card(aula, index)" 
      th:classappend="${index.odd} ? 'bg-light' : 'bg-white'"
      class="card mb-4">
-    <div class="card-header">
+    <div class="card-header d-flex justify-content-between align-items-center">
         <h5 th:text="${aula.nome} + ' - ' + ${aula.professor.nome}"></h5>
+        <!-- Carregar imagem específica da aula -->
+        <img th:if="${aula.nome == 'Basquete Feminino Sub20'}" src="/image/posts-aulas/basketball.png" alt="Basquete" class="img-fluid" style="width: 60px;">
+        <img th:if="${aula.nome == 'Futebol Masculino Infantil'}" src="/image/posts-aulas/football.png" alt="Futebol" class="img-fluid" style="width: 60px;">
+        <img th:if="${aula.nome == 'Natação Sub 20'}" src="/image/posts-aulas/swimming.png" alt="Natação" class="img-fluid" style="width: 60px;">
     </div>
     <div class="card-body">
         <p><strong>Data e Hora:</strong> <span th:text="${#temporals.format(aula.dataEHoraTreino, 'dd/MM/yyyy HH:mm')}"></span></p>
@@ -52,3 +56,4 @@
         </form>
     </div>
 </div>
+

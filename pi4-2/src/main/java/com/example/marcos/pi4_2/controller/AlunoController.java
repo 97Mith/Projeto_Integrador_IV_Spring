@@ -52,41 +52,14 @@ public class AlunoController {
         return "redirect:/alunos/listar";
     }
 
-
-    // metodos do curso acima
-    @GetMapping(value = "/{id}")
-    public ResponseEntity<Aluno> findById(@PathVariable Integer id) {
-        return ResponseEntity.ok().body(alunoService.findById(id));
-    }
-    @GetMapping(value = "nome/{nome}")
-    public ResponseEntity<List<Aluno>> findByName(@PathVariable String nome) {
-        return ResponseEntity.ok().body(alunoService.findByNome(nome));
-    }
-
-    @GetMapping(value = "cpf/{cpf}")
-    public ResponseEntity<Aluno> findByCpf(@PathVariable String cpf) {
-        return ResponseEntity.ok().body(alunoService.findByCpf(cpf));
-    }
-
-    @GetMapping
-    public ResponseEntity<List<Aluno>> findAll() {
-        return ResponseEntity.ok().body(alunoService.findAll());
-    }
-
-    @PostMapping
-    public ResponseEntity<Aluno> register(@RequestBody Aluno aluno, UriComponentsBuilder uriBuilder) {
-        Aluno alunoCriado = alunoService.register(aluno);
-        URI uri = uriBuilder.path("/alunos/{id}").buildAndExpand(alunoCriado.getId()).toUri();
-        return ResponseEntity.created(uri).body(alunoCriado);
-    }
-
-    /*@PutMapping(value = "/{id}")
-    public ResponseEntity<Aluno> update(@RequestBody Aluno aluno, @PathVariable(name = "id") Integer id) {
-        return ResponseEntity.ok().body(alunoService.update(aluno, id));
+    /*@PostMapping("/deletar/{id}")
+    public String deletarAluno(@PathVariable("id") Integer id, @RequestParam("senha") String senha) {
+        if (senhaService.verificarSenha(senha)) {  // Valida a senha com o serviço
+            alunoService.delete(id);
+            return "redirect:/alunos/listar";
+        }
+        return "redirect:/alunos/listar?error=senha";  // Redireciona com erro
     }*/
 
-    @DeleteMapping(value = "/{id}")
-    public ResponseEntity<String> delete(@PathVariable(value = "id") Integer id) {
-        return ResponseEntity.ok().body(alunoService.delete(id));
-    }
+
 }
