@@ -2,9 +2,11 @@ package com.example.marcos.pi4_2.controller;
 
 import com.example.marcos.pi4_2.entities.Aula;
 import com.example.marcos.pi4_2.services.AulaService;
+import com.example.marcos.pi4_2.services.ProfessorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -17,14 +19,24 @@ import java.util.List;
 public class AulaController {
 
     private final AulaService aulaService;
+    private final ProfessorService professorService;
     //-----------------------------------------------
     @GetMapping("/cadastrar")
-    public String cadastrar(){
+    public String cadastrar(Model model){
+        model.addAttribute("aula", new Aula());
+        model.addAttribute("professores", professorService.findAll());
         return "/aulas/cadastro";
     }
     @GetMapping("/listar")
-    public String listar(){
+    public String listar(Model model) {
+        List<Aula> aulas = aulaService.findAll();
+        model.addAttribute("aulas", aulas);
         return "/aulas/lista";
+    }
+    @PostMapping("/salvar")
+    public String salvar(Aula aula){
+        aulaService.register(aula);
+        return "redirect:/";
     }
 
     //------------------------------------------------

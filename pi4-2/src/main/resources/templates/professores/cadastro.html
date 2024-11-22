@@ -1,53 +1,92 @@
 <!DOCTYPE html>
-<html lang="pt" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+<html lang="pt"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  xmlns:th="http://www.thymeleaf.org"
+	  layout:decorate="~{layout}">
 <head>
-    <meta charset="UTF-8"/>
+	<meta charset="UTF-8"/>
+	<title>Cadastrar Professor</title>
 </head>
 <body>
-	
+<section class="layout-content" layout:fragment="corpo">
+	<nav class="navbar navbar-expand-md bg-light">
+		<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+					<i class="oi oi-caret-right"></i>
+					<span>Cadastrar Professor</span>
+				</li>
+			</ul>
+		</div>
+		<a class="btn btn-primary btn-md" href="/professores/listar" role="button">
+			<span class="oi oi-spreadsheet" title="Listar" aria-hidden="true"></span>
+			<span>Listar Professores</span>
+		</a>
+	</nav>
 
-	
-	    <section class="layout-content" layout:fragment="corpo">
-	
-	        <nav class="navbar navbar-expand-md bg-light">
-	            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-	                <ul class="navbar-nav mr-auto">
-	                    <li class="nav-item active">
-	                        <i class="oi oi-caret-right"></i>
-	                        <span>Cadastrar Professores</span>
-	                    </li>
-	                </ul>
-	            </div>
-	            <a class="btn btn-primary btn-md" href="/professores/listar" role="button">
-	                <span class="oi oi-spreadsheet" title="Cadastro" aria-hidden="true"></span>
-	                <span>Listar Professores</span>
-	            </a>
-	        </nav>
-	
-	        <div class="container" id="cadastro">
-	            <form action="/professores/salvar" method="POST">
-	                <div class="form-row">
-	                    <div class="form-group col-md-6">
-	                        <label for="nome">Nome do Professor</label>
-	                        <input type="text" class="form-control" id="nome" placeholder="Nome Profesor" autofocus="autofocus"
-	                               name="nome" value=""/>
-	                    </div>
-	                    <div class="form-group col-md-4">
-	                        <label for="departamento">Departamento</label>
-	                        <select id="departamento" class="form-control" name="departamento">
-	                            <option value="">Selecione</option>
-	                            <option value="3">Administração</option>
-	                            <option value="2">Contabilidade</option>
-	                            <option value="1">Recursos Humanos</option>
-	                            <option value="4">Tecnologia da Informação</option>
-	                        </select>
-	                    </div>
-	                </div>
-	                <input type="hidden" id="id" name="id" value=""/>
-	                <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
-	            </form>
-	        </div>
-	    </section>
+	<div class="container mt-3" id="cadastro">
+		<form th:action="${professor.id != null} ? @{/professores/editar/{id}(id=${professor.id})} : @{/professores/salvar}"
+			  th:object="${professor}" method="POST">
 
+			<div class="form-row">
+				<!-- Nome do Professor -->
+				<div class="form-group col-md-6">
+					<label for="nome">Nome do Professor</label>
+					<input type="text" class="form-control" id="nome" th:field="*{nome}" placeholder="Nome do Professor" required autofocus>
+				</div>
+				<!-- CPF -->
+				<div class="form-group col-md-6">
+					<label for="cpf">CPF</label>
+					<input type="text" class="form-control" id="cpf" th:field="*{cpf}" placeholder="CPF" required>
+				</div>
+			</div>
+
+			<div class="form-row">
+				<!-- Telefone -->
+				<div class="form-group col-md-6">
+					<label for="tel">Telefone</label>
+					<input type="text" class="form-control" id="tel" th:field="*{tel}" placeholder="Telefone">
+				</div>
+				<!-- Email -->
+				<div class="form-group col-md-6">
+					<label for="email">Email</label>
+					<input type="email" class="form-control" id="email" th:field="*{email}" placeholder="Email" required>
+				</div>
+			</div>
+
+			<div class="form-row">
+
+				<!-- Número da Licença -->
+				<div class="form-group col-md-6">
+					<label for="licenca">Número da Licença</label>
+					<input type="text" class="form-control" id="licenca" th:field="*{licenca}" placeholder="Número da Licença">
+				</div>
+			</div>
+
+			<div class="form-row">
+				<!-- Senha -->
+				<div class="form-group col-md-6">
+					<label for="senha">Senha</label>
+					<input type="password" class="form-control" id="senha" th:field="*{senha}" placeholder="Senha" required>
+				</div>
+				<!-- Status Ativo/Inativo -->
+				<div class="form-group col-md-6">
+					<label for="estaAtivo">Status</label>
+					<select id="estaAtivo" class="form-control" th:field="*{estaAtivo}">
+						<option value="true">Ativo</option>
+						<option value="false">Inativo</option>
+					</select>
+				</div>
+			</div>
+
+			<!-- Campo oculto para ID -->
+			<input type="hidden" id="id" th:field="*{id}"/>
+
+			<!-- Botões -->
+			<button type="submit" class="btn btn-primary btn-sm">Salvar</button>
+			<a href="/professores/listar" class="btn btn-secondary btn-sm">Cancelar</a>
+		</form>
+	</div>
+</section>
 </body>
-</html>		
+</html>

@@ -1,93 +1,57 @@
 <!DOCTYPE html>
-<html lang="pt" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+<html lang="pt"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  xmlns:th="http://www.thymeleaf.org"
+	  layout:decorate="~{layout}">
 <head>
-    <meta charset="UTF-8"/>
+	<meta charset="UTF-8"/>
+	<title>Lista de Aulas</title>
+	<!-- Incluindo bibliotecas para estrelas -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
 </head>
 <body>
-	
-	    <section class="layout-content" layout:fragment="corpo">
-	
-	        <nav class="navbar navbar-expand-md bg-light">
-	            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-	                <ul class="navbar-nav mr-auto">
-	                    <li class="nav-item active">
-	                        <i class="oi oi-caret-right"></i>
-	                        <span>Lista de Aulas</span>
-	                    </li>
-	                </ul>
-	                <a class="btn btn-primary btn-md" href="/aulas/cadastrar" role="button">
-	                    <span class="oi oi-plus" title="Cadastro" aria-hidden="true"></span>
-	                    <span>Nova Aula</span>
-	                </a>
-	            </div>
-	        </nav>
-	
-	        <div class="container" id="listagem">
-	
-	            <div class="table-responsive">
-	                <table class="table table-striped table-hover table-sm">
-	                    <thead>
-	                    <tr>
-	                        <th>#</th>
-	                        <th>Nome</th>
-	                        <th>Ação</th>
-	                    </tr>
-	                    </thead>
-	                    <tbody>
-	                    <tr>
-	                        <td>3</td>
-	                        <td>Administração</td>
-	                        <td colspan="2">
-	                            <a class="btn btn-info btn-sm" href="/aula/editar/3" role="button">
-	                                <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
-	                            </a>
-	                            <button id="btn_departamentos/excluir/3" type="button" class="btn btn-danger btn-sm">
-	                                <span class="oi oi-circle-x" title="Exclusão desabilitada" aria-hidden="true"></span>
-	                            </button>
-	                        </td>
-	                    </tr>
-	                    <tr>
-	                        <td>2</td>
-	                        <td>Contabilidade</td>
-	                        <td colspan="2">
-	                            <a class="btn btn-info btn-sm" href="/aulas/editar/2" role="button">
-	                                <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
-	                            </a>
-	                            <button type="button" class="btn btn-danger btn-sm">
-	                                <span class="oi oi-circle-x" title="Exclusão desabilitada" aria-hidden="true"></span>
-	                            </button>
-	                        </td>
-	                    </tr>
-	                    <tr>
-	                        <td>1</td>
-	                        <td>Recursos Humanos</td>
-	                        <td colspan="2">
-	                            <a class="btn btn-info btn-sm" href="/departamentos/editar/1" role="button">
-	                                <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
-	                            </a>
-	                            <button type="button" class="btn btn-danger btn-sm" >
-	                                <span class="oi oi-circle-x" title="Exclusão desabilitada" aria-hidden="true"></span>
-	                            </button>
-	                        </td>
-	                    </tr>
-	                    <tr>
-	                        <td>4</td>
-	                        <td>Tecnologia da Informação</td>
-	                        <td colspan="2">
-	                            <a class="btn btn-info btn-sm" href="/departamentos/editar/4" role="button">
-	                                <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
-	                            </a>
-	                            <button type="button" class="btn btn-danger btn-sm" >
-	                                <span class="oi oi-circle-x" title="Exclusão desabilitada" aria-hidden="true"></span>
-	                            </button>
-	                        </td>
-	                    </tr>
-	                    </tbody>
-	                </table>
-	            </div>
-	        </div>
-	
-	    </section>
+<section class="layout-content" layout:fragment="corpo">
+	<nav class="navbar navbar-expand-md bg-light">
+		<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+			<a class="btn btn-primary btn-md" href="/aulas/cadastrar" role="button">
+				<span class="oi oi-plus" title="Cadastro" aria-hidden="true"></span>
+				<span>Postar Nova Aula</span>
+			</a>
+		</div>
+	</nav>
 
+	<div class="container mt-3">
+		<h2>Lista de Aulas</h2>
+
+		<!-- Tabela de Aulas -->
+		<div class="table-responsive mt-3">
+			<table class="table table-striped table-hover table-sm">
+				<thead>
+				<tr>
+					<th>#</th>
+					<th>Nome da Aula</th>
+					<th>Data e Hora</th>
+					<th>Professor</th>
+					<th>Avaliação</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr th:each="aula, index : ${aulas}">
+					<td th:text="${index.count}">1</td>
+					<td th:text="${aula.nome}">Nome da Aula</td>
+					<td th:text="${#temporals.format(aula.dataEHoraTreino, 'dd/MM/yyyy HH:mm')}">01/01/2024 10:00</td>
+					<td th:text="${aula.professor.nome}">Nome do Professor</td>
+					<td>
+						<!-- Exibir estrelas -->
+						<span th:each="star : ${#numbers.sequence(1, 5)}">
+                            <i th:classappend="${star <= aula.avaliacaoDaAula} ? 'fas fa-star text-warning' : 'far fa-star'"></i>
+                        </span>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</section>
 </body>
-</html>		
+</html>

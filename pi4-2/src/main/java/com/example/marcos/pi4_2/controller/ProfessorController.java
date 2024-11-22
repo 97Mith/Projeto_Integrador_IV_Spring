@@ -6,6 +6,7 @@ import com.example.marcos.pi4_2.services.ProfessorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -20,12 +21,22 @@ public class ProfessorController {
 
     //-----------------------------------------------
     @GetMapping("/cadastrar")
-    public String cadastrar(){
+    public String cadastrar(Model model) {
+        model.addAttribute("professor",new Professor());
+        model.addAttribute("professores", professorService.findAll());
         return "/professores/cadastro";
     }
     @GetMapping("/listar")
-    public String listar(){
+    public String listar(Model model) {
+        List<Professor> professores = professorService.findAll();
+        model.addAttribute("professores", professores);
         return "/professores/lista";
+    }
+    @PostMapping("/salvar")
+    public String salvar(Professor professor){
+        professor.setCargo("Professor");
+        professorService.register(professor);
+        return "redirect:/professores/lista";
     }
 
     //------------------------------------------------

@@ -1,43 +1,54 @@
 <!DOCTYPE html>
-<html lang="pt" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate:="~{layout}">
+<html lang="pt"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  xmlns:th="http://www.thymeleaf.org"
+	  layout:decorate="~{layout}">
 <head>
-    <meta charset="UTF-8"/>
+	<meta charset="UTF-8"/>
+	<title>Postar Nova Aula</title>
 </head>
 <body>
+<!-- Formulário de Cadastro de Aula -->
+<section class="layout-content" layout:fragment="corpo">
+	<div class="container mt-5 pt-3">
+		<h2>Postar Nova Aula</h2>
+		<form th:action="${aula.id != null} ? @{/aulas/editar/{id}(id=${aula.id})} : @{/aulas/salvar}"
+			  th:object="${aula}" method="POST">
 
-	
-	    <section class="layout-content" layout:fragment="corpo">
-	
-	        <nav class="navbar navbar-expand-md bg-light">
-	            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-	                <ul class="navbar-nav mr-auto">
-	                    <li class="nav-item active">
-	                        <i class="oi oi-caret-right"></i>
-	                        <span>Cadastrar Aulas</span>
-	                    </li>
-	                </ul>
-	                <a class="btn btn-primary btn-md" href="/aulas/listar" role="button">
-	                    <span class="oi oi-spreadsheet" title="Listar" aria-hidden="true"></span>
-	                    <span>Listar Aulas</span>
-	                </a>
-	            </div>
-	        </nav>
-	
-	        <div class="container" id="cadastro">
-	            <form action="/aulas/salvar" method="POST">
-	                <div class="form-row">
-	                    <div class="form-group col-md-6">
-	                        <label for="nome">Aulas</label>
-	                        <input type="text" class="form-control" id="nome"
-	                               placeholder="Nome Aulas" autofocus="autofocus" name="nome" value=""/>
-	                    </div>
-	                </div>
-	                <input type="hidden" id="id" name="id" value=""/>
-	                <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
-	            </form>
-	        </div>
-	    </section>
-	
+			<!-- Selecionar Modalidade da Aula -->
+			<div class="form-group">
+				<label for="nome">Modalidade da Aula</label>
+				<select class="form-control" id="nome" th:field="*{nome}" required>
+					<option value="" disabled selected>Selecione uma modalidade...</option>
+					<option value="Basquete Feminino Sub20">Basquete Feminino Sub20</option>
+					<option value="Futebol Masculino Infantil">Futebol Masculino Infantil</option>
+					<option value="Natação Sub 20">Natação Sub 20</option>
+				</select>
+			</div>
 
+			<!-- Data e Hora do Treino -->
+			<div class="form-group">
+				<label for="dataEHoraTreino">Data e Hora do Treino</label>
+				<input type="datetime-local" class="form-control" id="dataEHoraTreino" th:field="*{dataEHoraTreino}" required>
+			</div>
+
+			<!-- Selecionar Professor -->
+			<div class="form-group">
+				<label for="professor">Professor</label>
+				<select class="form-control" id="professor" th:field="*{professor}" required>
+					<option value="" disabled selected>Selecione um professor...</option>
+					<option th:each="professor : ${professores}" th:value="${professor.id}" th:text="${professor.nome}"></option>
+				</select>
+			</div>
+
+			<!-- Campo Oculto para ID -->
+			<input type="hidden" id="id" th:field="*{id}"/>
+
+			<!-- Botões -->
+			<button type="submit" class="btn btn-primary mt-3">Salvar</button>
+			<a href="/aulas/listar" class="btn btn-secondary mt-3">Cancelar</a>
+		</form>
+	</div>
+</section>
 </body>
 </html>
