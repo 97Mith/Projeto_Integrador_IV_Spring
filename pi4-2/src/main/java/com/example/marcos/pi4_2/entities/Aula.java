@@ -40,6 +40,9 @@ public class Aula {
     @JoinColumn(name = "alunos_presentes_id")
     private List<FichaAluno> presentes;
 
+    @Column(name = "url_da_aula")
+    private String image;
+
     public Aula(Professor professor, double avaliacaoDaAula, List<ComentarioAula> comentarioAulas, List<FichaAluno> presentes) {
         this.professor = professor;
         this.avaliacaoDaAula = avaliacaoDaAula;
