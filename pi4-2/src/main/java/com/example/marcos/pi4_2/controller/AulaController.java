@@ -38,6 +38,11 @@ public class AulaController {
         aulaService.register(aula);
         return "redirect:/";
     }
+    @PostMapping("/deletar/{id}")
+    public String deletarAula(@PathVariable("id") Integer id) {
+        aulaService.delete(id);
+        return "redirect:/aulas/listar";
+    }
 
     //------------------------------------------------
 

@@ -4,11 +4,10 @@ package com.example.marcos.pi4_2.controller;
 import com.example.marcos.pi4_2.entities.Professor;
 import com.example.marcos.pi4_2.services.ProfessorService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
@@ -36,42 +35,25 @@ public class ProfessorController {
     public String salvar(Professor professor){
         professor.setCargo("Professor");
         professorService.register(professor);
-        return "redirect:/professores/lista";
+        return "redirect:/professores/listar";
     }
 
-    //------------------------------------------------
-    @GetMapping(value = "/{id}")
-    public ResponseEntity<Professor> findById(@PathVariable Integer id) {
-        return ResponseEntity.ok().body(professorService.findById(id));
-    }
-    @GetMapping(value = "nome/{nome}")
-    public ResponseEntity<List<Professor>> findByNome(@PathVariable String nome) {
-        return ResponseEntity.ok().body(professorService.findByNome(nome));
-    }
-    @GetMapping(value = "cpf/{cpf}")
-    public ResponseEntity<Professor> findByCpf(@PathVariable String cpf) {
-        return ResponseEntity.ok().body(professorService.findByCpf(cpf));
+    @GetMapping("/editar/{id}")
+    public String preEditarProfessor(@PathVariable("id") Integer id, ModelMap model) {
+        model.addAttribute("professor", professorService.findById(id));
+        return "/professores/cadastro";
     }
 
-    @GetMapping
-    public ResponseEntity<List<Professor>> findAll() {
-        return ResponseEntity.ok().body(professorService.findAll());
+    @PostMapping("/editar/{id}")
+    public String editarProfessor(Professor professor, @PathVariable("id") Integer id) {
+        professor.setCargo("Professor");
+        professorService.update(professor, id);
+        return "redirect:/professores/listar";
     }
 
-    @PostMapping
-    public ResponseEntity<Professor> register(@RequestBody Professor professor, UriComponentsBuilder uriBuilder) {
-        Professor professorCriado = professorService.register(professor);
-        URI uri = uriBuilder.path("/professor/{id}").buildAndExpand(professorCriado.getId()).toUri();
-        return ResponseEntity.created(uri).body(professorCriado);
-    }
-
-    @PutMapping(value = "/{id}")
-    public ResponseEntity<Professor> update(@RequestBody Professor professor, @PathVariable(name = "id") Integer id) {
-        return ResponseEntity.ok().body(professorService.update(professor, id));
-    }
-
-    @DeleteMapping(value = "/{id}")
-    public ResponseEntity<String> delete(@PathVariable(value = "id") Integer id) {
-        return ResponseEntity.ok().body(professorService.delete(id));
+    @PostMapping("/deletar/{id}")
+    public String deletarProfessor(@PathVariable("id") Integer id) {
+        professorService.delete(id);
+        return "redirect:/professores/listar";
     }
 }

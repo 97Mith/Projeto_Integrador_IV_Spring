@@ -49,17 +49,14 @@ public class AlunoController {
     public String editarAluno(Aluno aluno, @PathVariable("id") Integer id) {
         aluno.setCargo("Aluno");
         alunoService.update(aluno, id);
-        return "redirect:/alunos/listar";
+        return "redirect:/alunos/lista";
     }
 
-    /*@PostMapping("/deletar/{id}")
-    public String deletarAluno(@PathVariable("id") Integer id, @RequestParam("senha") String senha) {
-        if (senhaService.verificarSenha(senha)) {  // Valida a senha com o serviço
-            alunoService.delete(id);
-            return "redirect:/alunos/listar";
-        }
-        return "redirect:/alunos/listar?error=senha";  // Redireciona com erro
-    }*/
+    @PostMapping("/deletar/{id}")
+    public String deletarAluno(@PathVariable("id") Integer id) {
+        alunoService.delete(id);
+        return "redirect:/alunos/listar";
+    }
 
 
 }
