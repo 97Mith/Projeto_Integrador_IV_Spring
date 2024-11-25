@@ -38,6 +38,11 @@ public class AlunoServiceImplement implements AlunoService{
     }
 
     @Override
+    public List<Aluno> findAllById(List<Integer> ids){
+        return alunoRepository.findAllById(ids);
+    }
+
+    @Override
     public String delete(Integer id){
         alunoRepository.deleteById(id);
 
@@ -71,7 +76,7 @@ public class AlunoServiceImplement implements AlunoService{
         aluno4Update.setEstaAtivo(aluno.isEstaAtivo());
         aluno4Update.setDataNasc(aluno.getDataNasc());
         aluno4Update.setRating(aluno.getRating());
-        aluno4Update.setFichasAluno(aluno.getFichasAluno());
+        aluno4Update.setModalidade(aluno.getModalidade());
         aluno4Update.setHistoricoComentarios(aluno.getHistoricoComentarios());
 
     }

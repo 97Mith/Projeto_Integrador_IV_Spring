@@ -9,7 +9,7 @@
 </head>
 <body>
 
-	
+
 	    <section class="layout-content" layout:fragment="corpo">
 	        <nav class="navbar navbar-expand-md bg-light">
 	            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
@@ -20,13 +20,13 @@
 	                </a>
 	            </div>
 	        </nav>
-	
+
 	        <div class="container">
-	
+
 	            <div class="row">
 	                <div class="col">
 	                    <div class="collapse" id="collapseNome">
-	
+
 	                        <nav class="navbar navbar-light bg-light">
 	                            <form class="form-inline" method="GET" action="/funcionarios/buscar/nome">
 	                                <input class="form-control mr-sm-2" type="search" placeholder="nome" aria-label="Search"
@@ -34,14 +34,14 @@
 	                                <button class="btn btn-outline-success my-2 my-sm-0">Search</button>
 	                            </form>
 	                        </nav>
-	
+
 	                    </div>
 	                </div>
 	            </div>
 	            <div class="row">
 	                <div class="col">
 	                    <div class="collapse" id="collapseCargo">
-	
+
 	                        <nav class="navbar navbar-light bg-light">
 	                            <form class="form-inline" method="GET" action="/funcionarios/buscar/cargo">
 	                                <select class="form-control mr-sm-2" name="cargo" aria-label="Search">
@@ -61,14 +61,14 @@
 	                                <button class="btn btn-outline-success my-2 my-sm-0">Search</button>
 	                            </form>
 	                        </nav>
-	
+
 	                    </div>
 	                </div>
 	            </div>
 	            <div class="row">
 	                <div class="col">
 	                    <div class="collapse" id="collapseData">
-	
+
 	                        <nav class="navbar navbar-light bg-light">
 	                            <form class="form-inline" method="GET" action="/funcionarios/buscar/data">
 	                                <input class="form-control mr-sm-2" type="date" aria-label="Search"
@@ -78,22 +78,23 @@
 	                                <button class="btn btn-outline-success my-2 my-sm-0">Search</button>
 	                            </form>
 	                        </nav>
-	
+
 	                    </div>
 	                </div>
 	            </div>
-	
-	
+
+
 	            <div class="table-responsive">
 	                <table class="table table-striped table-hover table-sm">
 	                    <thead>
 	                    <tr>
 	                        <th>#</th>
-	                        <th>Nome</th>
+							<th>Ativo</th>
+							<th>Nome</th>
 	                        <th>Responsável</th>
 	                        <th>Telefone</th>
 	                        <th>E-Mail</th>
-	                        <th>Ativo</th>
+
 	                        <th>Data de Nasc</th>
 	                        <th>Modalidade</th>
 	                    </tr>
@@ -109,18 +110,18 @@
 	                        <td th:text="${aluno.nome}">Responsável</td>
 	                        <td th:text="${aluno.tel}">Telefone</td>
 	                        <td th:text="${aluno.email}">Auxiliar de RH</td>
-	                        <td >11/11/1999</td>
-	                        <td >Futebol</td>
-	                        <td>01/10/2014</td>
+	                        <td th:text="${aluno.dataNasc}"></td>
+	                        <td th:text="${aluno.modalidade}">Futebol</td>
 	                        <td></td>
 	                        <td colspan="2">
 	                            <a class="btn btn-info btn-sm" th:href="@{/alunos/editar/{id} (id=${aluno.id})}" role="button">
 	                                <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
 	                            </a>
-	                            <button id="btn_funcionarios/excluir/1" type="button" class="btn btn-danger btn-sm"
-	                                    data-toggle="modal" data-target="#myModal">
-	                                <span class="oi oi-circle-x" title="Excluir" aria-hidden="true"></span>
-	                            </button>
+								<form th:action="@{/alunos/deletar/{id}(id=${aluno.id})}" method="post" style="display:inline;">
+									<button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza de que deseja excluir este aluno?');">
+										<i class="fas fa-times"></i>
+									</button>
+								</form>
 	                        </td>
 	                    </tr>
 
@@ -131,4 +132,4 @@
 	    </section>
 
 </body>
-</html>		
+</html>

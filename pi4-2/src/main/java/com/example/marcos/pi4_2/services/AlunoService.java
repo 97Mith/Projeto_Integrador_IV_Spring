@@ -7,6 +7,7 @@ import java.util.List;
 public interface AlunoService {
     Aluno findById(Integer id);
     List<Aluno> findAll();
+    List<Aluno> findAllById(List<Integer> ids);
     Aluno register(Aluno aluno);
     Aluno update(Aluno aluno, Integer id);
     String delete(Integer id);

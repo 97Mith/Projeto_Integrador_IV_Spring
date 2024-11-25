@@ -11,4 +11,5 @@ import java.util.Optional;
 public interface AlunoRepository extends JpaRepository<Aluno, Integer> {
     List<Aluno> findByNome(String nome);
     Optional<Aluno> findByCpf(String cpf);
+    List<Aluno> findAllById(Integer id);
 }

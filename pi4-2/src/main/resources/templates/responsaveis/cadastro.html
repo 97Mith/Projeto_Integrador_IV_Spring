@@ -12,10 +12,11 @@
 <section class="layout-content" layout:fragment="corpo">
 	<div class="container mt-5 pt-3">
 		<h2>Cadastro de Responsável</h2>
-		<form th:action="${responsavel.id == null} ? @{/responsaveis/salvar} : @{/responsaveis/editar}"
+		<form th:action="${responsavel.id != null} ? @{/responsaveis/editar/{id}(id=${responsavel.id})} : @{/responsaveis/salvar}"
 			  th:object="${responsavel}" method="POST">
 
-			<!-- Dados Pessoais -->
+
+		<!-- Dados Pessoais -->
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="nome">Nome</label>
@@ -42,41 +43,17 @@
 				</div>
 			</div>
 
-			<div class="form-row">
-				<div class="form-group col-md-6">
-					<label for="senha">Senha</label>
-					<input type="password" class="form-control" id="senha" th:field="*{senha}"
-						   placeholder="Senha" required>
-				</div>
-
-			</div>
-
-			<div class="form-row">
-				<div class="form-group col-md-6">
-					<div class="form-check">
-						<input type="checkbox" class="form-check-input" id="estaAtivo" th:field="*{estaAtivo}">
-						<label class="form-check-label" for="estaAtivo">Está Ativo?</label>
-					</div>
-				</div>
-			</div>
-
-			<!-- Botão para Selecionar Alunos -->
+			<!-- Combobox para Selecionar um Único Aluno -->
 			<div class="form-group">
-				<label for="responsavelPor">Alunos sob responsabilidade</label>
-				<select class="form-control" id="responsavelPor" multiple th:field="*{responsavelPor}">
+				<label for="aluno">Aluno</label>
+				<select id="aluno" class="form-control" name="alunoId" required>
+					<option value="">Selecione um aluno...</option>
 					<option th:each="aluno : ${alunos}" th:value="${aluno.id}" th:text="${aluno.nome}"></option>
 				</select>
-				<small class="form-text text-muted">Segure Ctrl para selecionar múltiplos alunos.</small>
+
 			</div>
 
-			<!-- Botão para Selecionar Faturas -->
-			<div class="form-group">
-				<label for="faturas">Faturas associadas</label>
-				<select class="form-control" id="faturas" multiple th:field="*{faturas}">
-					<option th:each="fatura : ${faturas}" th:value="${fatura.id}" th:text="${fatura.descricao}"></option>
-				</select>
-				<small class="form-text text-muted">Segure Ctrl para selecionar múltiplas faturas.</small>
-			</div>
+
 
 			<!-- Campo Oculto para ID -->
 			<input type="hidden" id="id" th:field="*{id}"/>

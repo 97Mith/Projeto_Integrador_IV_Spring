@@ -10,7 +10,7 @@ public interface ResponsavelAlunoService {
     ResponsavelAluno findById(Integer id);
     List<ResponsavelAluno> findAll();
     ResponsavelAluno register(ResponsavelAluno aula);
-    ResponsavelAluno update(ResponsavelAluno aula);
+    ResponsavelAluno update(ResponsavelAluno aula, Integer id);
     String delete(Integer id);
     List<ResponsavelAluno> findByNome(String nome);
     ResponsavelAluno findByCpf(String cpf);

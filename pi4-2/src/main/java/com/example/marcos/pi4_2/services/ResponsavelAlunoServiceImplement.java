@@ -31,8 +31,10 @@ public class ResponsavelAlunoServiceImplement implements ResponsavelAlunoService
     }
 
     @Override
-    public ResponsavelAluno update(ResponsavelAluno responsavelAluno) {
-        return responsavelAlunoRepository.save(responsavelAluno);
+    public ResponsavelAluno update(ResponsavelAluno responsavelAluno, Integer id) {
+        ResponsavelAluno responsavel4Updated = returnResponsavelAluno(id);
+        updateResponsavelAlunoData(responsavel4Updated, responsavelAluno);
+        return responsavelAlunoRepository.save(responsavel4Updated);
     }
 
     @Override

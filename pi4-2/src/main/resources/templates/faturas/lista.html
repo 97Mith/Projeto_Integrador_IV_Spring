@@ -11,7 +11,6 @@
 <section class="layout-content" layout:fragment="corpo">
 	<nav class="navbar navbar-expand-md bg-light">
 		<div class="collapse navbar-collapse" id="navbarsExampleDefault">
-
 			<a class="btn btn-primary btn-md" href="/faturas/cadastrar" role="button">
 				<span class="oi oi-plus" title="Cadastro" aria-hidden="true"></span>
 				<span>Cadastrar Fatura</span>
@@ -20,9 +19,6 @@
 	</nav>
 
 	<div class="container">
-
-
-
 		<!-- Filtro por Datas de Vencimento -->
 		<div class="row">
 			<div class="col">
@@ -37,7 +33,6 @@
 				</div>
 			</div>
 		</div>
-
 
 		<!-- Tabela de Faturas -->
 		<div class="table-responsive mt-3">
@@ -57,19 +52,24 @@
 					<td th:text="${fatura.id}">1</td>
 					<td th:text="${fatura.responsavelAluno.nome}">Nome do Responsável</td>
 					<td th:text="${fatura.valor}">100.00</td>
-					<td th:text="${fatura.vencimento}">01/01/2024</td>
+					<td th:text="${#temporals.format(fatura.vencimento, 'dd/MM/yyyy')}">01/01/2024</td>
 					<td>
 						<span th:text="${fatura.estaPago ? 'Sim' : 'Não'}"></span>
 					</td>
 					<td>
-						<!-- Botões de ação -->
-						<a class="btn btn-info btn-sm" th:href="@{/faturas/editar/{id} (id=${fatura.id})}" role="button">
+						<!-- Botão de edição -->
+						<a class="btn btn-info btn-sm" th:href="@{/faturas/editar/{id}(id=${fatura.id})}" role="button">
 							<span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
 						</a>
-						<button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal"
-								th:attr="data-id=${fatura.id}">
-							<span class="oi oi-circle-x" title="Excluir" aria-hidden="true"></span>
-						</button>
+
+						<!-- Formulário de exclusão -->
+						<form th:action="@{/faturas/deletar/{id}(id=${fatura.id})}" method="POST"
+							  onsubmit="return confirm('Tem certeza que deseja excluir esta fatura?');"
+							  style="display: inline;">
+							<button type="submit" class="btn btn-danger btn-sm">
+								<span class="oi oi-circle-x" title="Excluir" aria-hidden="true"></span>
+							</button>
+						</form>
 					</td>
 				</tr>
 				</tbody>
@@ -77,7 +77,5 @@
 		</div>
 	</div>
 </section>
-
-
 </body>
 </html>

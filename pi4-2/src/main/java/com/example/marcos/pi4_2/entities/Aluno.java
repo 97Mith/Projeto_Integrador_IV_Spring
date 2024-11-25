@@ -17,26 +17,25 @@ import java.util.List;
 @Table(name = "tb_alunos")
 public class Aluno extends Pessoa{
 
+    @Column(name = "modalidade")
+    private String modalidade;
+
     @Column(name = "data_de_nascimento", nullable = false)
     private LocalDate dataNasc;
 
     @Column(name = "pontuacao")
     private Integer rating;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "modalidades")
-    private List<FichaAluno> fichasAluno;
-
     @OneToMany//(cascade = CascadeType.ALL)
     @Column(name = "historico_de_comentarios")
     private List<ComentarioAula> historicoComentarios;
 
     public Aluno(String nome, String cpf, String tel, String email, String senha, String cargo, boolean estaAtivo,
-                 LocalDate dataNasc, Integer rating, List<FichaAluno> fichasAluno, List<ComentarioAula> historicoComentarios) {
+                 LocalDate dataNasc, Integer rating, String modalidade, List<ComentarioAula> historicoComentarios) {
         super(nome, cpf, tel, email, senha, cargo, estaAtivo);
         this.dataNasc = dataNasc;
         this.rating = rating;
-        this.fichasAluno = fichasAluno;
+        this.modalidade = modalidade;
         this.historicoComentarios = historicoComentarios;
     }
 }

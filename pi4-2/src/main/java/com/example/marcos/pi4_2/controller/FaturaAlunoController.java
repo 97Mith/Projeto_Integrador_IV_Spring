@@ -47,4 +47,10 @@ public class FaturaAlunoController {
         faturaService.update(faturaAluno, id);
         return "redirect:/faturas/listar";
     }
+
+    @PostMapping("/deletar/{id}")
+    public String deletarFatura(@PathVariable("id") Integer id){
+        faturaService.delete(id);
+        return "redirect:/faturas/listar";
+    }
 }
