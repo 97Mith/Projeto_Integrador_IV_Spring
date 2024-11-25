@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Bad Sport Club</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+        .nav-item {
+            padding: 18px 0; /* Espaçamento entre os itens */
+        }
+        .layout-main {
+            display: flex;
+        }
+        .sidebar {
+            width: 250px;
+            background-color: #f8f9fa;
+            padding: 20px;
+            height: 100vh;
+        }
+        .content {
+            flex: 1;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+<!-- Header -->
+<header class="navbar navbar-custom fixed-top bg-dark text-white p-3">
+    <div class="container-fluid">
+        <a class="navbar-brand d-flex align-items-center text-white" href="/home">
+            <img src="/image/favicon.png" alt="Logo" style="width: 30px; height: 30px; margin-right: 10px;">
+            Bad Sport Club
+        </a>
+        <a class="btn btn-outline-light ms-auto" href="/home">
+            <i class="fas fa-home"></i> Home
+        </a>
+    </div>
+</header>
+
+<div class="layout-main mt-5 pt-5">
+    <!-- Sidebar -->
+    <nav class="sidebar">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link" href="/faturas/listar">
+                    Minhas Faturas
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-danger" href="/logout">
+                    <i class="fas fa-sign-out-alt"></i> Sair
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Conteúdo Principal -->
+    <div class="content">
+        <h1 class="mb-4">Feed de Aulas</h1>
+        <div class="row">
+            <!-- Loop para carregar o fragmento das aulas -->
+            <div class="col-12 mb-4" th:each="aula, index : ${aulas}">
+                <div th:replace="~{fragments/aula-fragment :: aula-card(${aula}, ${index})}"></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Footer -->
+<footer class="bg-light text-center py-3">
+    <div class="container">
+        <span>&copy; 2024 Bad Sport Club. Todos os direitos reservados.</span>
+    </div>
+</footer>
+
+<!-- Bootstrap core JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
