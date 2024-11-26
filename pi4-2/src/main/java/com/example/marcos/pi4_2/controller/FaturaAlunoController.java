@@ -38,6 +38,7 @@ public class FaturaAlunoController {
 
     @GetMapping("/editar/{id}")
     public String preEditarFatura(@PathVariable("id") Integer id, ModelMap model) {
+        model.addAttribute("responsaveis", responsavelService.findAll());
         model.addAttribute("fatura", faturaService.findById(id));
         return "/faturas/cadastro";
     }
