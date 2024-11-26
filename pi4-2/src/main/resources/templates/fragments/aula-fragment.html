@@ -1,6 +1,6 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <!-- aula-fragment.html -->
-<div th:fragment="aula-card(aula, index)" 
+<div th:fragment="aula-card(aula, index)"
      th:classappend="${index.odd} ? 'bg-light' : 'bg-white'"
      class="card mb-4">
     <div class="card-header d-flex justify-content-between align-items-center">
@@ -45,9 +45,9 @@
                 <label class="form-label">Avaliação:</label>
                 <div class="d-flex align-items-center">
                     <span th:each="star : ${#numbers.sequence(1, 5)}" class="me-2">
-                        <input type="radio" th:id="'star' + ${star}" th:name="avaliacao" th:value="${star}" class="d-none" required/>
+                        <input type="radio" th:id="'star' + ${star}" name="avaliacao" th:value="${star}" class="d-none" required/>
                         <label th:for="'star' + ${star}">
-                            <i class="far fa-star" style="cursor: pointer;"></i>
+                            <i class="far fa-star star-icon" style="cursor: pointer;"></i>
                         </label>
                     </span>
                 </div>
@@ -57,3 +57,22 @@
     </div>
 </div>
 
+<!-- JavaScript para Gerenciar a Seleção de Estrelas -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const stars = document.querySelectorAll('.star-icon');
+
+        stars.forEach((star, index) => {
+            star.addEventListener('click', function() {
+                stars.forEach((s, i) => {
+                    s.classList.remove('fas', 'text-warning');
+                    s.classList.add('far');
+                    if (i <= index) {
+                        s.classList.add('fas', 'text-warning');
+                    }
+                });
+                document.getElementById('star' + (index + 1)).checked = true;
+            });
+        });
+    });
+</script>

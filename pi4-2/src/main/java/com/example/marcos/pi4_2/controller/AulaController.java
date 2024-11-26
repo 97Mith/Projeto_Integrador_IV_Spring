@@ -1,7 +1,11 @@
 package com.example.marcos.pi4_2.controller;
 
+import com.example.marcos.pi4_2.entities.Aluno;
 import com.example.marcos.pi4_2.entities.Aula;
+import com.example.marcos.pi4_2.entities.ComentarioAula;
+import com.example.marcos.pi4_2.services.AlunoService;
 import com.example.marcos.pi4_2.services.AulaService;
+import com.example.marcos.pi4_2.services.ComentarioAulaService;
 import com.example.marcos.pi4_2.services.ProfessorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -20,7 +25,22 @@ public class AulaController {
 
     private final AulaService aulaService;
     private final ProfessorService professorService;
+    private final ComentarioAulaService comentarioService;
+    private final AlunoService alunoService;
     //-----------------------------------------------
+    @PostMapping("/{id}/comentarios")
+    public String adicionarComentario(@PathVariable("id") Integer aulaId,
+                                      @RequestParam("comentario") String comentarioTexto,
+                                      @RequestParam("avaliacao") int avaliacao) {
+        Aula aula = aulaService.findById(aulaId);
+        Aluno aluno = alunoService.findById(3);
+
+        ComentarioAula comentario = new ComentarioAula(aluno, comentarioTexto, aula, avaliacao);
+
+        comentarioService.register(comentario);
+
+        return "redirect:/aluno-home/feed";
+    }
     @GetMapping("/cadastrar")
     public String cadastrar(Model model){
         model.addAttribute("aula", new Aula());

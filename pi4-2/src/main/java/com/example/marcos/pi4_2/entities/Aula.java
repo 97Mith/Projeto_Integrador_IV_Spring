@@ -33,7 +33,7 @@ public class Aula {
     @Column(name = "avaliacao_da_aula")
     private double avaliacaoDaAula;
 
-    @OneToMany
+    @OneToMany(mappedBy = "aula", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ComentarioAula> comentarioAulas;
 
     @OneToMany
