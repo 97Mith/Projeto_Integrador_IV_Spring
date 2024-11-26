@@ -1,110 +1,85 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="css/sobreEsportes.css">
-        <link rel="stylesheet" href="css/style.css">
-        <title>Esportes</title>
-    </head>
-    
-    <body>
-        <!-- Navbar -->
-        <div class="w3-top">
-            <div class="w3-bar custom-navbar w3-card w3-left-align w3-large">  
-                <div style="align-items: center; margin-right: 15px; margin-left: 5px;">
-                    <img src="assets/logo.png" alt="Home" class = "w3-left" style="width:48px; height:48px; margin-right:8px;"> 
-                    <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
-                    <a href="index.html" class="w3-bar-item w3-button w3-padding-large w3-white">Home</a>
-                    <a href="listaEsportes.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Aulas Oferecidas</a>
-                    <a href="visita.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Venha nos Visitar</a>
-                    <a href="sobreNos.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Sobre Nós</a>
-                    <a href="comentario.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Avaliações e Parceiros</a>
-                    <a href="sobreEsportes.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Sobre Esportes</a>
-                    <a href="login.html" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white">Login<img src="assets/LoginIcon.png" alt="Login" style="width:27px; height:27px; vertical-align:middle; margin-left:8px;"/></a>
-                </div>
-            </div>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esportes</title>
 
-            <!-- Navbar para telas pequenas -->
-            <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
-                <a href="index2.html" class="w3-bar-item w3-button w3-padding-large">Home</a>
-                <a href="listaEsportes.html" class="w3-bar-item w3-button w3-padding-large">Aulas Oferecidas</a>
-                <a href="visita.html" class="w3-bar-item w3-button w3-padding-large">Venha nos Visitar</a>
-                <a href="sobreNos.html" class="w3-bar-item w3-button w3-padding-large">Sobre Nós</a>
-                <a href="comentario.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Avaliações e Parceiros</a>
-                <a href="sobreEsportes.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Sobre Esportes</a>
-                <a href="login.html" class="w3-bar-item w3-button w3-padding-large">Login</a>
-            </div>
-        </div>
-        <h1>Esportes</h1>
+    <!-- Estilos externos -->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-        <div class="sport" id="futebol">
-            <h2>Futebol</h2>
-            <p>O futebol é, sem dúvida, o esporte mais popular do mundo, atraindo milhões de fãs em todos os continentes. Originado na Inglaterra no século XIX, o futebol evoluiu para um fenômeno global, com ligas e competições em praticamente todos os países. O esporte é jogado entre duas equipes de onze jogadores cada, em um campo retangular com um gol em cada extremidade. O objetivo é marcar mais gols do que o adversário, conduzindo a bola com os pés e passando-a entre os jogadores. A Copa do Mundo da FIFA, realizada a cada quatro anos, é o evento mais prestigiado do futebol, reunindo as melhores seleções nacionais em um torneio que captura a atenção de bilhões de pessoas.</p>
-            <p>A simplicidade do futebol é uma das razões de sua popularidade: ele pode ser jogado em qualquer lugar, com apenas uma bola e espaço para correr. As regras são relativamente fáceis de aprender, o que permite que crianças e adultos de todas as idades e habilidades participem. O futebol também tem um papel importante na cultura e na identidade nacional de muitos países, sendo mais do que apenas um esporte para muitos de seus fãs.</p>
-        </div>
+    <!-- Estilos locais -->
+    <link th:href="@{/landingpage/css/style.css}" rel="stylesheet">
+    <link th:href="@{/landingpage/css/sobreEsportes.css}" rel="stylesheet">
+</head>
 
-        <div class="sport" id="basquetebol">
-            <h2>Basquetebol</h2>
-            <p>O basquetebol é um esporte dinâmico e intenso, conhecido por seu ritmo acelerado e pela habilidade técnica necessária para driblar, passar e arremessar a bola. Criado em 1891 por James Naismith, o basquete rapidamente se tornou popular em escolas e universidades, antes de se expandir para um esporte profissional global. Cada equipe é composta por cinco jogadores, que competem para marcar pontos jogando a bola através de uma cesta elevada a 3,05 metros do chão. O jogo é dividido em quatro períodos, e a equipe com mais pontos ao final vence.</p>
-            <p>Além do jogo profissional, o basquete é amplamente praticado em ambientes amadores, em quadras de bairro e escolas. A National Basketball Association (NBA) dos Estados Unidos é a liga mais famosa do mundo, conhecida por apresentar jogadores talentosos e por sua influência na cultura pop. O basquete também faz parte dos Jogos Olímpicos, onde equipes de todo o mundo competem pelo ouro. A natureza do jogo incentiva o trabalho em equipe, a estratégia e a velocidade, tornando-o emocionante tanto para os jogadores quanto para os espectadores.</p>
-        </div>
+<body>
+<!-- Incluir o fragmento do header -->
+<div th:replace="~{landingpage/fragments/header :: header}"></div>
 
-        <div class="sport" id="natacao">
-            <h2>Natação</h2>
-            <p>A natação é um esporte que combina resistência, técnica e velocidade. Ela pode ser praticada tanto em piscinas quanto em águas abertas, e é um dos esportes mais completos para o condicionamento físico. A natação tem suas origens nas atividades humanas de sobrevivência, mas evoluiu para um esporte competitivo no final do século XIX, com a criação de diferentes estilos de nado, como crawl, costas, peito e borboleta. Cada estilo requer um conjunto específico de habilidades e técnicas, tornando a natação um esporte diversificado e desafiador.</p>
-            <p>Competidores de natação participam de uma variedade de eventos, que variam em distância e estilo. As competições podem ser individuais ou de revezamento, onde equipes de nadadores se alternam para completar uma determinada distância. Além dos benefícios competitivos, a natação é amplamente reconhecida por seus benefícios à saúde. Ela melhora a capacidade cardiovascular, fortalece os músculos e é uma forma de exercício de baixo impacto, sendo adequada para pessoas de todas as idades e níveis de aptidão.</p>
-        </div>
+<!-- Conteúdo principal -->
+<h1 class="w3-center mt-5">Esportes</h1>
 
-        <div class="sport" id="tenis">
-            <h2>Tênis</h2>
-            <p>O tênis é um esporte que requer precisão, resistência e estratégia. Jogadores usam raquetes para bater uma bola sobre uma rede, tentando colocá-la no lado do adversário de forma que ele não consiga devolver. O tênis pode ser jogado em simples, com dois jogadores, ou em duplas, com quatro jogadores. A quadra de tênis pode ser feita de diferentes superfícies, como grama, saibro ou piso duro, cada uma oferecendo diferentes desafios e exigindo diferentes estilos de jogo.</p>
-            <p>Os torneios de tênis mais prestigiados são os Grand Slams, que incluem o Australian Open, Roland Garros, Wimbledon e o US Open. Esses torneios atraem os melhores jogadores do mundo e são assistidos por milhões de fãs. O tênis é um esporte que exige uma combinação de força, agilidade, coordenação e estratégia, tornando-o emocionante para assistir e desafiador para jogar. Além disso, o tênis é uma atividade que pode ser praticada durante toda a vida, oferecendo benefícios físicos e mentais para seus praticantes.</p>
-        </div>
+<div class="sport" id="futebol">
+    <h2>Futebol</h2>
+    <p>O futebol é, sem dúvida, o esporte mais popular do mundo...</p>
+</div>
 
-        <div class="sport" id="volei">
-            <h2>Vôlei</h2>
-            <p>O vôlei é um esporte que se destaca pela sua dinâmica e pela necessidade de trabalho em equipe. Jogando em uma quadra dividida por uma rede alta, as equipes, compostas por seis jogadores cada, devem trabalhar juntas para passar a bola por cima da rede e fazê-la tocar o chão do lado adversário. O jogo é dividido em sets, e a equipe que vencer a maioria dos sets ganha a partida. A agilidade, a coordenação e a comunicação são fundamentais para o sucesso no vôlei.</p>
-            <p>O vôlei foi inventado em 1895 por William G. Morgan como uma alternativa menos intensa ao basquete. Desde então, evoluiu para um esporte competitivo com variações, como o vôlei de praia, que é jogado em uma quadra de areia com equipes de dois jogadores. O vôlei é um esporte olímpico desde 1964, e o vôlei de praia foi adicionado aos Jogos Olímpicos em 1996. Este esporte é conhecido por suas jogadas espetaculares, como saques potentes, bloqueios e cortadas, que requerem uma combinação de força, técnica e estratégia.</p>
-        </div>
+<div class="sport" id="basquetebol">
+    <h2>Basquetebol</h2>
+    <p>O basquetebol é um esporte dinâmico e intenso...</p>
+</div>
 
-        <div class="sport" id="judo">
-            <h2>Judô</h2>
-            <p>O judô é uma arte marcial e esporte de combate que se originou no Japão no final do século XIX. Criado por Jigoro Kano, o judô combina técnicas de projeção e controle no solo, e é conhecido tanto por sua eficácia em combate quanto por sua filosofia de respeito, disciplina e autodesenvolvimento. Os praticantes de judô, conhecidos como judocas, aprendem a utilizar a força e o movimento do adversário contra ele, empregando uma variedade de técnicas para desequilibrar e projetar o oponente ao chão.</p>
-            <p>O judô tornou-se um esporte olímpico em 1964 e é praticado em todo o mundo por pessoas de todas as idades. Além de ser uma forma eficaz de defesa pessoal, o judô é valorizado por seu aspecto educativo. Ele ensina valores como respeito, cortesia, coragem e autocontrole, e promove o desenvolvimento físico e mental. O judô é praticado em um tatame, onde os judocas usam um uniforme chamado judogi e competem em diferentes categorias de peso para garantir a equidade nas competições.</p>
-        </div>
-        <!-- Footer -->
-        <footer class="w3-container w3-padding-64 w3-center w3-opacity">
-            <div style="display: flex; align-items: center; margin-bottom: 16px;">
-                <img src="assets/telefone.png" alt="telefone" style="width:25px; height:25px; margin-right: 8px;"/>
-                <span><b>Telefone: </b>+55 (41) 99123-4567</span>
-            </div>
-            <div style="display: flex; align-items: center; margin-bottom: 16px;">
-                <img src="assets/email.png" alt="email" style="width:25px; height:25px; margin-right: 8px;"/>
-                <span><b>Email: </b>badsport@outlook.com</span>
-            </div>
-            <div style="display: flex; align-items: center; margin-bottom: 16px;">
-                <img src="assets/endereço.png" alt="endereço" style="width:25px; height:25px; margin-right: 8px;"/>
-                <span><b>Endereço: </b>Av. das Araucária, 3803</span>
-            </div>
+<div class="sport" id="natacao">
+    <h2>Natação</h2>
+    <p>A natação é um esporte que combina resistência, técnica e velocidade...</p>
+</div>
 
+<div class="sport" id="tenis">
+    <h2>Tênis</h2>
+    <p>O tênis é um esporte que requer precisão, resistência e estratégia...</p>
+</div>
 
-            <div class="w3-xlarge w3-padding-32">
-                <i class="fa fa-facebook-official w3-hover-opacity"></i>
-                <i class="fa fa-instagram w3-hover-opacity"></i>
-                <i class="fa fa-snapchat w3-hover-opacity"></i>
-                <i class="fa fa-pinterest-p w3-hover-opacity"></i>
-                <i class="fa fa-twitter w3-hover-opacity"></i>
-                <i class="fa fa-linkedin w3-hover-opacity"></i>            
-            </div>
-            <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
-        </footer>
+<div class="sport" id="volei">
+    <h2>Vôlei</h2>
+    <p>O vôlei é um esporte que se destaca pela sua dinâmica...</p>
+</div>
 
-        <script src="js/main.js"></script>
-    </body>
+<div class="sport" id="judo">
+    <h2>Judô</h2>
+    <p>O judô é uma arte marcial e esporte de combate que se originou no Japão...</p>
+</div>
 
+<!-- Footer -->
+<footer class="w3-container w3-padding-64 w3-center w3-opacity">
+    <div style="display: flex; align-items: center; margin-bottom: 16px;">
+        <img th:src="@{/landingpage/images/telefone.png}" alt="telefone" style="width:25px; height:25px; margin-right: 8px;"/>
+        <span><b>Telefone: </b>+55 (41) 99123-4567</span>
+    </div>
+    <div style="display: flex; align-items: center; margin-bottom: 16px;">
+        <img th:src="@{/landingpage/images/email.png}" alt="email" style="width:25px; height:25px; margin-right: 8px;"/>
+        <span><b>Email: </b>badsport@outlook.com</span>
+    </div>
+    <div style="display: flex; align-items: center; margin-bottom: 16px;">
+        <img th:src="@{/landingpage/images/endereco.png}" alt="endereço" style="width:25px; height:25px; margin-right: 8px;"/>
+        <span><b>Endereço: </b>Av. das Araucária, 3803</span>
+    </div>
+
+    <div class="w3-xlarge w3-padding-32">
+        <i class="fa fa-facebook-official w3-hover-opacity"></i>
+        <i class="fa fa-instagram w3-hover-opacity"></i>
+        <i class="fa fa-snapchat w3-hover-opacity"></i>
+        <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+        <i class="fa fa-twitter w3-hover-opacity"></i>
+        <i class="fa fa-linkedin w3-hover-opacity"></i>
+    </div>
+    <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+</footer>
+
+<!-- Scripts -->
+<script th:src="@{/landingpage/js/main.js}"></script>
+</body>
 </html>
