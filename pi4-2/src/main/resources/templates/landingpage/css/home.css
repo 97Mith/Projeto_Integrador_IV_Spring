@@ -1,0 +1,53 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+/* 
+    Created on : 25 de out. de 2024, 22:35:24
+    Author     : Marcos
+*/
+
+
+body, h1, h2, h3, h4, h5, h6 {
+    font-family: "Lato", sans-serif;
+}
+
+.w3-bar, h1, button {
+    font-family: "Montserrat", sans-serif;
+}
+
+.fa-anchor, .fa-coffee {
+    font-size: 200px;
+}
+
+#arrowButton {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+}
+
+#arrowButton i {
+    color: white;
+    font-size: 24px;
+}
+
+#arrowButtonLeft {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+}
+
+#arrowButton i, #arrowButtonLeft i {
+    color: white;
+    font-size: 24px;
+}

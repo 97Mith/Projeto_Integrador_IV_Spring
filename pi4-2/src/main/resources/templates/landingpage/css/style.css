@@ -1,0 +1,50 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+/* 
+    Created on : 8 de set. de 2024, 01:44:31
+    Author     : Marcos
+*/
+
+.custom-header {
+    background-color: #1c3e5a;
+}
+
+.custom-navbar {
+    color:#000000;
+    background-color: #df3f00;
+}
+
+.custom-navbar .w3-bar-item:hover {
+    color: #21618c
+}
+
+.custom-navbar .w3-bar-item.w3-white {
+    color: #000000;
+}
+
+.footer-img {
+    display: block;
+}
+
+.w3-bar,h1,button {
+    font-family: "Montserrat", sans-serif
+}
+
+.fa-anchor,.fa-coffee {
+    font-size:200px
+}
+
+footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    width: 100%;
+/*    background-color: #f1f1f1;*/
+    background-color: #f4f4f4;
+    position: relative;
+}

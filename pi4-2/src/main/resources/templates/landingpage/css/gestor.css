@@ -1,0 +1,21 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+/* 
+    Created on : 14 de nov. de 2024, 18:38:40
+    Author     : Marcos
+*/
+
+.container {
+    display: flex;
+    gap: 10px;
+    margin: 20px auto;
+    max-width: 1200px;
+    justify-content: space-between;
+}
+
+.panel {
+    border-top: 5px solid #ff914d;
+    flex: 1;
+}

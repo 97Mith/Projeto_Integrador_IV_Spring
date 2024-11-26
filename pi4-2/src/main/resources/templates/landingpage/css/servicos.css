@@ -1,0 +1,134 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+/* 
+    Created on : 26 de out. de 2024, 00:10:26
+    Author     : Marcos
+*/
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f7f9fc;
+    padding-top: 50px;
+
+}
+
+h1 {
+    text-align: center;
+    color: #1c3e5a;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.descricao-planos {
+    background-color: #1c3e5a;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    margin-bottom: 40px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+    line-height: 1.6;
+}
+
+.container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.produto {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    width: 30%;
+    margin: 20px 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.produto:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.produto.basico {
+    border-top: 5px solid #1c87e6;
+}
+
+.produto.premium {
+    border-top: 5px solid #ff914d;
+}
+
+.produto.platina {
+    border-top: 5px solid #ff3333;
+}
+
+.titulo {
+    color: #1c3e5a;
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.preco-mensal {
+    color: #1c87e6;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.preco-total {
+    color: #ff914d;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.descricao {
+    color: #555;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.detalhes {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.botao {
+    background-color: #ff914d;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.botao:hover {
+    background-color: #ff3333;
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .produto {
+        width: 90%;
+    }
+}
