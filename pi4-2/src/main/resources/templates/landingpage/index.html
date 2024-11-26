@@ -8,32 +8,61 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- Referência ao CSS estático -->
-    <link th:href="@{/landingpage/assets/css/home.css}" rel="stylesheet">
-    <link th:href="@{/landingpage/assets/css/style.css}" rel="stylesheet">
+    <!-- Referências aos CSS no diretório static -->
+    <link th:href="@{/landingpage/css/home.css}" rel="stylesheet">
+    <link th:href="@{/landingpage/css/style.css}" rel="stylesheet">
 </head>
 <body>
 
 <!-- Incluir o fragmento do header -->
 <div th:replace="~{landingpage/fragments/header :: header}"></div>
 
-<!-- Conteúdo principal -->
+<!-- Conteúdo principal com carrossel -->
 <header class="w3-container w3-center custom-header" style="padding:50px 16px; position: relative;">
-    <img th:src="@{/landingpage/assets/images/BadSportLogoBlue.jpg}" alt="Logo"/>
+    <img id="headerImage" th:src="@{/landingpage/images/BadSportLogoBlue.jpg}" alt="Logo" class="img-fluid"/>
     <p class="w3-xlarge" style="color: white">Bad Sport escola esportiva</p>
     <button class="w3-button w3-black w3-padding-large w3-large w3-margin-top">Seja um membro</button>
+
+    <!-- Botões de navegação do carrossel -->
+    <button id="arrowButton" onclick="changeImage('prox')">
+        <i class="fa fa-arrow-right"></i>
+    </button>
+    <button id="arrowButtonLeft" onclick="changeImage('ant')">
+        <i class="fa fa-arrow-left"></i>
+    </button>
 </header>
 
-<!-- Outros conteúdos... -->
+<!-- Primeiro Grid -->
+<div class="w3-row-padding w3-padding-64 w3-container">
+    <div class="w3-content">
+        <div class="w3-twothird">
+            <h1>Escola de Esportes</h1>
+            <h5 class="w3-padding-32">Na nossa escola, oferecemos uma ampla variedade de modalidades esportivas para todos os níveis e idades...</h5>
+            <p class="w3-text-grey">Nosso programa inclui seis esportes principais: futebol, basquete, natação, tênis, vôlei e judô...</p>
+        </div>
+        <div class="w3-third w3-center">
+            <img th:src="@{/landingpage/images/BolaLaranja.png}" alt="BolaLaranja" class="img-fluid"/>
+        </div>
+    </div>
+</div>
 
 <!-- Footer -->
 <footer class="w3-container w3-padding-64 w3-center w3-opacity">
-    <!-- Conteúdo do footer aqui -->
+    <div class="contact-info">
+        <div>
+            <img th:src="@{/landingpage/images/telefone.png}" alt="telefone" style="width:25px; height:25px; margin-right: 8px;"/>
+            <span><b>Telefone:</b> +55 (41) 99123-4567</span>
+        </div>
+        <div>
+            <img th:src="@{/landingpage/images/email.png}" alt="email" style="width:25px; height:25px; margin-right: 8px;"/>
+            <span><b>Email:</b> badsport@outlook.com</span>
+        </div>
+    </div>
     <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
 </footer>
 
-<!-- Referência aos JavaScript estáticos -->
-<script th:src="@{/landingpage/assets/js/home.js}"></script>
-<script th:src="@{/landingpage/assets/js/main.js}"></script>
+<!-- Referências aos JavaScript estáticos -->
+<script th:src="@{/landingpage/js/home.js}"></script>
+<script th:src="@{/landingpage/js/main.js}"></script>
 </body>
 </html>

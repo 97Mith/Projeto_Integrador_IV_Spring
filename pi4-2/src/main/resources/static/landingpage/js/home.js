@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Other/javascript.js to edit this template
  */
 
-var images = ["assets/BadSportLogoBlue.jpg", "assets/HeaderPhoto2.jpg", "assets/BadSportLogo.jpg"];
+var images = ["landingpage/images/BadSportLogoBlue.jpg", "landingpage/images/HeaderPhoto2.jpg", "landingpage/images/BadSportLogo.jpg"];
 var currentIndex = 0;
 
 function changeImage(direction) {

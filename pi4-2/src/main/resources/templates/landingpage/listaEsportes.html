@@ -1,156 +1,134 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
-        <link rel="stylesheet" href="css/style.css">
-        <link rel="stylesheet" href="css/listaEsportes.css">
-        <title>Nossos Esportes</title>
-    </head>
-    
-    <body style="padding: 0; margin: 0;">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nossos Esportes</title>
 
-        <header class="w3-container w3-center custom-header" style="padding:5px; position: relative;">
-            <img id="headerImage" src="assets/logo.png" alt="Logo" style="width:100px; height:100px" />
-            <p class="w3-xlarge" style="color: white">Bad Sport Escola Esportiva</p>
-        </header>
+    <!-- Estilos externos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 
-        <!-- Navbar -->
-        <div class="w3-top">
-            <div class="w3-bar custom-navbar w3-card w3-left-align w3-large">  
-                <div style="align-items: center; margin-right: 15px; margin-left: 5px;">
-                    <img src="assets/logo.png" alt="Home" class = "w3-left" style="width:48px; height:48px; margin-right:8px;"> 
-                    <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
-                    <a href="index.html" class="w3-bar-item w3-button w3-padding-large w3-white">Home</a>
-                    <a href="listaEsportes.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Aulas Oferecidas</a>
-                    <a href="visita.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Venha nos Visitar</a>
-                    <a href="sobreNos.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Sobre Nós</a>
-                    <a href="comentario.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Avaliações e Parceiros</a>
-                    <a href="sobreEsportes.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Sobre Esportes</a>
-                    <a href="login.html" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white">Login<img src="assets/LoginIcon.png" alt="Login" style="width:27px; height:27px; vertical-align:middle; margin-left:8px;"/></a>
-                </div>
-            </div>
+    <!-- Estilos locais -->
+    <link th:href="@{/landingpage/css/style.css}" rel="stylesheet">
+    <link th:href="@{/landingpage/css/listaEsportes.css}" rel="stylesheet">
+</head>
 
-            <!-- Navbar para telas pequenas -->
-            <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
-                <a href="index2.html" class="w3-bar-item w3-button w3-padding-large">Home</a>
-                <a href="listaEsportes.html" class="w3-bar-item w3-button w3-padding-large">Aulas Oferecidas</a>
-                <a href="visita.html" class="w3-bar-item w3-button w3-padding-large">Venha nos Visitar</a>
-                <a href="sobreNos.html" class="w3-bar-item w3-button w3-padding-large">Sobre Nós</a>
-                <a href="comentario.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Avaliações e Parceiros</a>
-                <a href="sobreEsportes.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Sobre Esportes</a>
-                <a href="login.html" class="w3-bar-item w3-button w3-padding-large">Login</a>
-            </div>
+<body style="padding: 0; margin: 0;">
+
+<!-- Incluir o fragmento do header -->
+<div th:replace="~{landingpage/fragments/header :: header}"></div>
+
+<header class="w3-container w3-center custom-header" style="padding:5px; position: relative;">
+    <img id="headerImage" src="landingpage/images/logo.png" alt="Logo" style="width:100px; height:100px" />
+    <p class="w3-xlarge" style="color: white">Bad Sport Escola Esportiva</p>
+</header>
+
+<!-- Conteúdo principal -->
+<section class="grid-container">
+    <div class="container">
+        <div class="image-container">
+            <a th:href="@{/sobre-esportes#futebol}">
+                <img th:src="@{/landingpage/images/Futebol.jpg}" alt="Futebol">
+            </a>
         </div>
+        <div class="text-container">
+            <h1>Futebol</h1>
+            <p>Desenvolva suas habilidades no esporte mais popular do mundo.</p>
+        </div>
+    </div>
 
-        <!-- Grid de Esportes -->
-        <section class="grid-container">
-            <div class="container">
-                <div class="image-container">
-                    <a href="sobreEsportes.html#futebol">
-                        <img src="assets/Futebol.jpg" alt="Futebol">
-                    </a>
-                </div>
-                <div class="text-container">
-                    <h1>Futebol</h1>
-                    <p>Desenvolva suas habilidades no esporte mais popular do mundo.</p>
-                </div>
-            </div>
+    <div class="container">
+        <div class="image-container">
+            <a th:href="@{/sobre-esportes#basquetebol}">
+                <img th:src="@{/landingpage/images/Baskete.jpg}" alt="Basquete">
+            </a>
+        </div>
+        <div class="text-container">
+            <h1>Basquete</h1>
+            <p>Treinamentos intensos para futuros campeões das quadras.</p>
+        </div>
+    </div>
 
-            <div class="container">
-                <div class="image-container">
-                    <a href="sobreEsportes.html#basquetebol">
-                        <img src="assets/Baskete.jpg" alt="Basquete">
-                    </a>
-                </div>
-                <div class="text-container">
-                    <h1>Basquete</h1>
+    <div class="container">
+        <div class="image-container">
+            <a th:href="@{/sobre-esportes#natacao}">
+                <img th:src="@{/landingpage/images/Natacao.jpg}" alt="Natação">
+            </a>
+        </div>
+        <div class="text-container">
+            <h1>Natação</h1>
+            <p>Seja rápido como um peixe, melhore sua performance na água.</p>
+        </div>
+    </div>
 
-                    <p>Treinamentos intensos para futuros campeões das quadras.</p>
-                </div>
-            </div>
+    <div class="container">
+        <div class="image-container">
+            <a th:href="@{/sobre-esportes#tenis}">
+                <img th:src="@{/landingpage/images/Tenis.jpg}" alt="Tênis">
+            </a>
+        </div>
+        <div class="text-container">
+            <h1>Tênis</h1>
+            <p>Aprimore suas jogadas e sua estratégia nas quadras.</p>
+        </div>
+    </div>
 
-            <div class="container">
-                <div class="image-container">
-                    <a href="sobreEsportes.html#natacao">
-                        <img src="assets/Natacao.jpg" alt="Natação">
-                    </a>
-                </div>
-                <div class="text-container">
-                    <h1>Natação</h1>
-                    <p>Seja rápido como um peixe, melhore sua performance na água.</p>
-                </div>
-            </div>
+    <div class="container">
+        <div class="image-container">
+            <a th:href="@{/sobre-esportes#volei}">
+                <img th:src="@{/landingpage/images/Voley.jpg}" alt="Vôlei">
+            </a>
+        </div>
+        <div class="text-container">
+            <h1>Vôlei</h1>
+            <p>Saiba o que é jogar em equipe com nossos treinadores de elite.</p>
+        </div>
+    </div>
 
-            <div class="container">
-                <div class="image-container">
-                    <a href="sobreEsportes.html#tenis">
-                        <img src="assets/Tenis.jpg" alt="Tênis">
-                    </a>
-                </div>
-                <div class="text-container">
-                    <h1>Tênis</h1>
-                    <p>Aprimore suas jogadas e sua estratégia nas quadras.</p>
-                </div>
-            </div>
+    <div class="container">
+        <div class="image-container">
+            <a th:href="@{/sobre-esportes#judo}">
+                <img th:src="@{/landingpage/images/Judo.jpg}" alt="Judô">
+            </a>
+        </div>
+        <div class="text-container">
+            <h1>Judô</h1>
+            <p>Descubra a disciplina e a força do judô em nossas aulas.</p>
+        </div>
+    </div>
 
-            <div class="container">
-                <div class="image-container">
-                    <a href="sobreEsportes.html#volei">
-                        <img src="assets/Voley.jpg" alt="Vôlei">
-                    </a>
-                </div>
-                <div class="text-container">
-                    <h1>Vôlei</h1>
-                    <p>Saiba o que é jogar em equipe com nossos treinadores de elite.</p>
-                </div>
-            </div>
+</section>
 
-            <div class="container">
-                <div class="image-container">
-                    <a href="sobreEsportes.html#judo">
-                        <img src="assets/Judo.jpg" alt="Judô">
-                    </a>
-                </div>
-                <div class="text-container">
-                    <h1>Judô</h1>
-                    <p>Descubra a disciplina e a força do judô em nossas aulas.</p>
-                </div>
-            </div>
+<!-- Footer -->
+<footer class="w3-container w3-padding-64 w3-center w3-opacity">
+    <div style="display: flex; align-items: center; margin-bottom: 16px;">
+        <img th:src="@{/landingpage/images/telefone.png}" alt="telefone" style="width:25px; height:25px; margin-right: 8px;"/>
+        <span><b>Telefone: </b>+55 (41) 99123-4567</span>
+    </div>
+    <div style="display: flex; align-items: center; margin-bottom: 16px;">
+        <img th:src="@{/landingpage/images/email.png}" alt="email" style="width:25px; height:25px; margin-right: 8px;"/>
+        <span><b>Email: </b>badsport@outlook.com</span>
+    </div>
+    <div style="display: flex; align-items: center; margin-bottom: 16px;">
+        <img th:src="@{/landingpage/images/endereco.png}" alt="endereço" style="width:25px; height:25px; margin-right: 8px;"/>
+        <span><b>Endereço: </b>Av. das Araucária, 3803</span>
+    </div>
 
-        </section>
+    <div class="w3-xlarge w3-padding-32">
+        <i class="fa fa-facebook-official w3-hover-opacity"></i>
+        <i class="fa fa-instagram w3-hover-opacity"></i>
+        <i class="fa fa-snapchat w3-hover-opacity"></i>
+        <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+        <i class="fa fa-twitter w3-hover-opacity"></i>
+        <i class="fa fa-linkedin w3-hover-opacity"></i>
+    </div>
+    <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+</footer>
 
-        <!-- Footer -->
-        <footer class="w3-container w3-padding-64 w3-center w3-opacity">
-            <div style="display: flex; align-items: center; margin-bottom: 16px;">
-                <img src="assets/telefone.png" alt="telefone" style="width:25px; height:25px; margin-right: 8px;"/>
-                <span><b>Telefone: </b>+55 (41) 99123-4567</span>
-            </div>
-            <div style="display: flex; align-items: center; margin-bottom: 16px;">
-                <img src="assets/email.png" alt="email" style="width:25px; height:25px; margin-right: 8px;"/>
-                <span><b>Email: </b>badsport@outlook.com</span>
-            </div>
-            <div style="display: flex; align-items: center; margin-bottom: 16px;">
-                <img src="assets/endereço.png" alt="endereço" style="width:25px; height:25px; margin-right: 8px;"/>
-                <span><b>Endereço: </b>Av. das Araucária, 3803</span>
-            </div>
-
-
-            <div class="w3-xlarge w3-padding-32">
-                <i class="fa fa-facebook-official w3-hover-opacity"></i>
-                <i class="fa fa-instagram w3-hover-opacity"></i>
-                <i class="fa fa-snapchat w3-hover-opacity"></i>
-                <i class="fa fa-pinterest-p w3-hover-opacity"></i>
-                <i class="fa fa-twitter w3-hover-opacity"></i>
-                <i class="fa fa-linkedin w3-hover-opacity"></i>            
-            </div>
-            <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
-        </footer>
-        
-        <script src="js/main.js"></script>
-    </body>
+<!-- Referência ao JavaScript -->
+<script th:src="@{/landingpage/js/main.js}"></script>
+</body>
 </html>
