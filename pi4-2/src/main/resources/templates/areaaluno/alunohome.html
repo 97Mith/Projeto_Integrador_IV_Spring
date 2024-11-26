@@ -24,17 +24,23 @@
             flex: 1;
             padding: 20px;
         }
+        .navbar-custom {
+        background-color: #1D3E5B !important;
+}
+        .navbar-custom .navbar-brand {
+        color: #ffffff !important;
+}
     </style>
 </head>
 <body>
 <!-- Header -->
 <header class="navbar navbar-custom fixed-top bg-dark text-white p-3">
     <div class="container-fluid">
-        <a class="navbar-brand d-flex align-items-center text-white" href="/home">
+        <a class="navbar-brand d-flex align-items-center text-white" href="/aluno-home/feed">
             <img src="/image/favicon.png" alt="Logo" style="width: 30px; height: 30px; margin-right: 10px;">
             Bad Sport Club
         </a>
-        <a class="btn btn-outline-light ms-auto" href="/home">
+        <a class="btn btn-outline-light ms-auto" href="/aluno-home/feed">
             <i class="fas fa-home"></i> Home
         </a>
     </div>
@@ -45,7 +51,7 @@
     <nav class="sidebar">
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a class="nav-link" href="/faturas/listar">
+                <a class="nav-link" href="/aluno-home/minhas-faturas">
                     Minhas Faturas
                 </a>
             </li>
