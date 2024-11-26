@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Bad Sport</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Referência ao CSS estático -->
+    <link th:href="@{/landingpage/assets/css/home.css}" rel="stylesheet">
+    <link th:href="@{/landingpage/assets/css/style.css}" rel="stylesheet">
+</head>
+<body>
+
+<!-- Incluir o fragmento do header -->
+<div th:replace="~{landingpage/fragments/header :: header}"></div>
+
+<!-- Conteúdo principal -->
+<header class="w3-container w3-center custom-header" style="padding:50px 16px; position: relative;">
+    <img th:src="@{/landingpage/assets/images/BadSportLogoBlue.jpg}" alt="Logo"/>
+    <p class="w3-xlarge" style="color: white">Bad Sport escola esportiva</p>
+    <button class="w3-button w3-black w3-padding-large w3-large w3-margin-top">Seja um membro</button>
+</header>
+
+<!-- Outros conteúdos... -->
+
+<!-- Footer -->
+<footer class="w3-container w3-padding-64 w3-center w3-opacity">
+    <!-- Conteúdo do footer aqui -->
+    <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+</footer>
+
+<!-- Referência aos JavaScript estáticos -->
+<script th:src="@{/landingpage/assets/js/home.js}"></script>
+<script th:src="@{/landingpage/assets/js/main.js}"></script>
+</body>
+</html>

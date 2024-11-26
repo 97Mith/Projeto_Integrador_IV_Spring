@@ -8,7 +8,7 @@ public class IndexController {
 
     @GetMapping("/index")
     public String index() {
-        return "index"; // Carrega landingage.html de templates
+        return "index"; // Carrega index.html de templates
     }
 
     @GetMapping("/registrar")

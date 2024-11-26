@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<nav th:fragment="header" class="w3-top">
+    <div class="w3-bar custom-navbar w3-card w3-left-align w3-large">
+        <div style="align-items: center; margin-right: 15px; margin-left: 5px;">
+            <img th:src="@{/landingpage/assets/images/logo.png}" alt="Home" class="w3-left" style="width:48px; height:48px; margin-right:8px;">
+            <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+            <a th:href="@{/}" class="w3-bar-item w3-button w3-padding-large w3-white">Home</a>
+            <a th:href="@{/lista-esportes}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Aulas Oferecidas</a>
+            <a th:href="@{/visita}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Venha nos Visitar</a>
+            <a th:href="@{/sobre-nos}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Sobre Nós</a>
+            <a th:href="@{/comentario}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Avaliações e Parceiros</a>
+            <a th:href="@{/sobre-esportes}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Sobre Esportes</a>
+            <a th:href="@{/login}" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white">Login
+                <img th:src="@{/landingpage/assets/images/LoginIcon.png}" alt="Login" style="width:27px; height:27px; vertical-align:middle; margin-left:8px;">
+            </a>
+        </div>
+    </div>
+</nav>
+</body>
+</html>
