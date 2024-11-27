@@ -13,10 +13,14 @@
     <div class="card-body">
         <p><strong>Data e Hora:</strong> <span th:text="${#temporals.format(aula.dataEHoraTreino, 'dd/MM/yyyy HH:mm')}"></span></p>
         <p><strong>Avaliação da Aula:</strong>
+            <span th:text="${#numbers.formatDecimal(aula.avaliacaoDaAula, 1, 1)}" class="me-2"></span> <!-- Exibe a média numérica -->
             <span th:each="star : ${#numbers.sequence(1, 5)}">
-                <i th:classappend="${star <= aula.avaliacaoDaAula} ? 'fas fa-star text-warning' : 'far fa-star'"></i>
+            <i th:classappend="${star <= aula.avaliacaoDaAula} ? 'fas fa-star text-warning' :
+                          (${star - 1 < aula.avaliacaoDaAula && star > aula.avaliacaoDaAula} ? 'fas fa-star-half-alt text-warning' : 'far fa-star')"></i>
             </span>
         </p>
+
+
 
         <!-- Comentários da Aula -->
         <h6>Comentários:</h6>

@@ -1,6 +1,7 @@
 package com.example.marcos.pi4_2.services;
 
 import com.example.marcos.pi4_2.entities.Aula;
+import com.example.marcos.pi4_2.entities.ComentarioAula;
 import com.example.marcos.pi4_2.repositories.AulaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Primary;
@@ -17,13 +18,19 @@ public class AulaServiceImplement implements AulaService {
 
     @Override
     public Aula findById(Integer id) {
-        return returnAula(id);
+
+        Aula aula = returnAula(id);
+        atualizarAvaliacaoMedia(aula);
+        return aula;
     }
 
     @Override
     public List<Aula> findAll() {
-        return aulaRepository.findAll();
+        List<Aula> aulas = aulaRepository.findAll();
+        aulas.forEach(this::atualizarAvaliacaoMedia);
+        return aulas;
     }
+
 
     @Override
     public Aula register(Aula aula) {
@@ -43,6 +50,8 @@ public class AulaServiceImplement implements AulaService {
         return "Aula excluída com sucesso!";
     }
 
+
+
     private Aula returnAula(Integer id) {
         return aulaRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Aula não encontrada no banco de dados"));
@@ -53,5 +62,20 @@ public class AulaServiceImplement implements AulaService {
         aulaToUpdate.setAvaliacaoDaAula(aula.getAvaliacaoDaAula());
         aulaToUpdate.setComentarioAulas(aula.getComentarioAulas());
         aulaToUpdate.setPresentes(aula.getPresentes());
+    }
+
+    public void atualizarAvaliacaoMedia(Aula aula) {
+        List<ComentarioAula> comentarios = aula.getComentarioAulas();
+
+        if (comentarios != null && !comentarios.isEmpty()) {
+            double media = comentarios.stream()
+                    .mapToInt(ComentarioAula::getAvaliacao)
+                    .average()
+                    .orElse(0.0);
+            aula.setAvaliacaoDaAula(media);
+        } else {
+            aula.setAvaliacaoDaAula(0.0);
+        }
+        aulaRepository.save(aula);
     }
 }

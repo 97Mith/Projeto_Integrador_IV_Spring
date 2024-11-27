@@ -10,6 +10,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/aluno-home")
@@ -26,9 +27,13 @@ public class AreaAlunoController {
 
     @GetMapping("/feed")
     public String home(Model model) {
-        List<Aula> aulas = aulaService.findAll();
+        List<Aula> aulas = aulaService.findAll()
+                .stream()
+                .sorted((a1, a2) -> a2.getDataEHoraTreino().compareTo(a1.getDataEHoraTreino()))
+                .limit(8) // Limita a 8 aulas
+                .collect(Collectors.toList());
         model.addAttribute("aulas", aulas);
-        return "areaaluno/alunohome";  // Retorna o template correto
+        return "areaaluno/alunohome";
     }
 
     @GetMapping("/minhas-faturas")

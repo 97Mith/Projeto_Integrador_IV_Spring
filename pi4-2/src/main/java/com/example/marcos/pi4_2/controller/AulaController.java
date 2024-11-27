@@ -3,10 +3,7 @@ package com.example.marcos.pi4_2.controller;
 import com.example.marcos.pi4_2.entities.Aluno;
 import com.example.marcos.pi4_2.entities.Aula;
 import com.example.marcos.pi4_2.entities.ComentarioAula;
-import com.example.marcos.pi4_2.services.AlunoService;
-import com.example.marcos.pi4_2.services.AulaService;
-import com.example.marcos.pi4_2.services.ComentarioAulaService;
-import com.example.marcos.pi4_2.services.ProfessorService;
+import com.example.marcos.pi4_2.services.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -15,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -24,6 +20,7 @@ import java.util.List;
 public class AulaController {
 
     private final AulaService aulaService;
+    private final AulaServiceImplement metodoAula;
     private final ProfessorService professorService;
     private final ComentarioAulaService comentarioService;
     private final AlunoService alunoService;
@@ -33,14 +30,16 @@ public class AulaController {
                                       @RequestParam("comentario") String comentarioTexto,
                                       @RequestParam("avaliacao") int avaliacao) {
         Aula aula = aulaService.findById(aulaId);
-        Aluno aluno = alunoService.findById(3);
+        Aluno aluno = alunoService.findById(1);
 
         ComentarioAula comentario = new ComentarioAula(aluno, comentarioTexto, aula, avaliacao);
-
         comentarioService.register(comentario);
+
+        metodoAula.atualizarAvaliacaoMedia(aula);
 
         return "redirect:/aluno-home/feed";
     }
+
     @GetMapping("/cadastrar")
     public String cadastrar(Model model){
         model.addAttribute("aula", new Aula());
@@ -92,4 +91,5 @@ public class AulaController {
     public ResponseEntity<String> delete(@PathVariable(value = "id") Integer id) {
         return ResponseEntity.ok().body(aulaService.delete(id));
     }
+
 }
